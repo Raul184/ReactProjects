@@ -12,19 +12,24 @@ import styles from "./styles/TodoFormStyles";
 function TodoForm(props) {
 	const [value, handleChange, reset] = useFormHook("");
 	return (
-		<Paper>
+		<Paper style={{margin: "1rem 0"}}>
 			<form
-				className={styles.form}
+				className={props.classes.form}
 				onSubmit={e => {
 				e.preventDefault();
 				props.addTodo(value);
 				reset();
 			}}
 			>
-				<Textfield value={value} onChange={handleChange}/>
-				<Button color="secondary" type="submit">
+				<Textfield
+					value={value}
+					onChange={handleChange}
+					label="Add todo"
+					fullWidth
+				/>
+				{/* <Button color="secondary" type="submit">
 					Add Todo
-				</Button>
+				</Button> */}
 			</form>
 		</Paper>
 	)

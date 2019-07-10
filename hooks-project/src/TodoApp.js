@@ -12,23 +12,20 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 //Material UI Styles
 import { withStyles } from "@material-ui/core";
+//IDs tool
+const uuidv4 = require('uuid/v4');
 
+//STYLES MUI
 const styles = {
-	root: {
-		padding: 0,
-		margin: 0,
-		height: "100vh",
-		backgroundColor: "#fafafa"
-	},
 	gridStyles: {
-		margin: "15px"
+		padding: "35px"
 	}
 }
 
 function TodoApp(props) {
 	const initialTodos = [
 		{ id: 1, task: "clean", completed: false },
-		{ id: 2, task: "eat", completed: false },
+		{ id: 2, task: "eat", completed: true },
 		{ id: 3, task: "sleep", completed: false }
 	];
 	//Hook for toDos
@@ -36,24 +33,49 @@ function TodoApp(props) {
 
 	//ADD toDos
 	const addTodo = (nueTodo) => {
-		setToDos([...toDos, {id:4, task:nueTodo, completed:false}]);
+		setToDos([...toDos, {id:uuidv4(), task:nueTodo, completed:false}]);
 	}
+
+	//DELETE toDos
+	const removeTodo = todoId => {
+		const todosR = toDos.filter(todo => todo.id !== todoId);
+		setToDos(todosR);
+	}; 
+	//CHECKED toDos
+	const checkTodo = checkId => {
+		const todosU = toDos.map(todo =>
+			todo.id === checkId ? { ...todo, completed: !todo.completed } : todo
+		);
+		setToDos(todosU);
+	}
+
+	//EDIT toDos
+	const editTodo = (id, nueTask) => {
+		const toDosToEdit = toDos.map(todo => 
+			todo.id === id ? { ...todo, task: nueTask } : todo
+		)
+	}
+	
 	return (
-		<Paper className={props.root}>
-			<AppBar color="primary" position="static" style={{ height: "64px" }}>
+		<Paper style={{width: "90%" , margin: "0 auto"}}>
+			<AppBar color="primary" position="static"
+				style={{ height: "64px", marginBottom: "20px" }}
+			>
 				<Toolbar>
 					<Typography color="inherit">Todos with hooks</Typography>
 				</Toolbar>
 			</AppBar>
-			<TodoForm addTodo={addTodo} />
 			<Grid
 				className={props.gridStyles}
-	  		container
-  			direction="column"
-  			justify="center"
-  			alignItems="center"
+				container
+				direction="column"
 			>
-				<TodoList todos={toDos} />
+				<TodoForm addTodo={addTodo} />
+				<TodoList todos={toDos}
+					removeTodo={removeTodo}
+					checkTodo={checkTodo}
+					editTodo={editTodo}
+				/>
 			</Grid>
 		</Paper>
 	)

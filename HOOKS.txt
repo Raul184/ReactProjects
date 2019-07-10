@@ -1,0 +1,9 @@
+=====================================================================
+				STATE
+=====================================================================
+
+cons [ value , setValue ] = useState(initial value for value);
+
+name === this.state.name 
+
+e.target.name = e.target.value

@@ -54,6 +54,7 @@ function TodoApp(props) {
 		const toDosToEdit = toDos.map(todo => 
 			todo.id === id ? { ...todo, task: nueTask } : todo
 		)
+		setToDos(toDosToEdit);
 	}
 	
 	return (
@@ -75,6 +76,7 @@ function TodoApp(props) {
 					removeTodo={removeTodo}
 					checkTodo={checkTodo}
 					editTodo={editTodo}
+					addTodo={addTodo}
 				/>
 			</Grid>
 		</Paper>

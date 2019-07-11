@@ -13,7 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 
-function Todo({editTodo, id, task, completed, checkTodo, removeTodo}) {
+function Todo({editTodo, id, task, completed, checkTodo, removeTodo, addTodo}) {
 	
 	//Hook
 	const [edit, toogleEdit] = useToggleState(false);
@@ -23,6 +23,7 @@ function Todo({editTodo, id, task, completed, checkTodo, removeTodo}) {
 			{edit ?
 				<EditTodoForm
 					editTodo={editTodo} id={id} task={task} checkTodo={toogleEdit}
+					addTodo={addTodo}
 				/>
 			:
 				<>

@@ -27,9 +27,9 @@ function TodoForm(props) {
 					label="Add todo"
 					fullWidth
 				/>
-				{/* <Button color="secondary" type="submit">
+				<Button color="secondary" type="submit">
 					Add Todo
-				</Button> */}
+				</Button>
 			</form>
 		</Paper>
 	)

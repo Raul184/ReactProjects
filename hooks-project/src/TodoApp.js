@@ -23,13 +23,14 @@ const styles = {
 }
 
 function TodoApp(props) {
-	const initialTodos = [
-		{ id: 1, task: "clean", completed: false },
-		{ id: 2, task: "eat", completed: true },
-		{ id: 3, task: "sleep", completed: false }
-	];
+	const initialTodos = JSON.parse(localStorage.getItem('todos') || "[]");
 	//Hook for toDos
 	const [toDos, setToDos] = React.useState(initialTodos);
+
+	// On state change here ..
+	React.useEffect(() => {
+		window.localStorage.setItem('todos', JSON.stringify(toDos));	
+	}, [toDos])
 
 	//ADD toDos
 	const addTodo = (nueTodo) => {

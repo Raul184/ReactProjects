@@ -1,0 +1,12 @@
+.Deck{
+	display: flex;
+	flex-wrap: nowrap;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	height: 80vh;
+	padding-top: 30px;
+}
+.Deck a {
+	text-decoration: none;
+}

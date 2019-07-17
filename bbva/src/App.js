@@ -37,10 +37,6 @@ export default class App extends Component {
         <Route exact path="/Branch/BBVA-Risk/Solutions"
           render={() => <ChartSamplesII />}/>
       </Switch>  
-      {/* <Switch>
-        <Route exact path="/Branch/:id/:section"
-            render={(routeParams) => <ChartSamples {...routeParams}/> } />    
-      </Switch>   */}
       </>
     )
   }

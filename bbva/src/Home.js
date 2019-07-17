@@ -25,7 +25,7 @@ export default class SlidingHeader extends Component {
 			<div className="Sliding-intro">
 				<img className="Intro-img" src={"https://www.bbva.com/wp-content/uploads/2019/06/Marqueex2-1920x899.png"} alt="bbva homepage" />
 				<div className="Intro-content">
-					<h1 className="Intro-title">BBVA Global</h1>
+					<h1 className="Intro-title">Enterprise Clients Insight</h1>
 					<div className="Intro-sub">
 						<div className="Intro-links">
 							<i className="fa fa-user-circle" aria-hidden="true"></i>

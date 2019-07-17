@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 // import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,7 +15,7 @@ import Select from "@material-ui/core/Select";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./Styles/FormStyles";
 //Context Language being used
-import { LanguageContext } from "./contexts/LanguageContext";
+import {LanguageContext } from "./contexts/LanguageContext";
 
 const words = {
   english: {
@@ -38,15 +38,13 @@ const words = {
   }
 };
 
-class Form extends Component {
-  //c
-  static contextType = LanguageContext; 
-  render() {
-    const { language, setLanguage }  = this.context;
-    const { classes } = this.props;
-    const { signIn, email, password, remember} = words[language];
-    return (
-      <main className={classes.main}>
+//Functional Component
+function Form(props) {
+  const { language, setLanguage }  = useContext(LanguageContext);
+  const { classes } = props;
+  const { signIn, email, password, remember} = words[language];
+  return (
+    <main className={classes.main}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -81,8 +79,15 @@ class Form extends Component {
             </Button>
           </form>
         </Paper>
-      </main>
-    );
-  }
+    </main>
+  );
 }
+
+
+// class Form extends Component {
+//   //c
+//   static contextType = LanguageContext; 
+//   render() {
+    
+// }
 export default withStyles(styles)(Form);

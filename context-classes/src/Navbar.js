@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 //styles
 import { withStyles } from "@material-ui/core";
 import styles from "./Styles/NavbarStyles";
@@ -12,7 +12,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import Switch from "@material-ui/core/Switch";
 //Context
 import {Context} from "./contexts/ThemeContext";
-import { withLanguageContext } from "./contexts/LanguageContext";
+// import { withLanguageContext } from "./contexts/LanguageContext";
+//Context Language being used
+import { LanguageContext } from "./contexts/LanguageContext";
 
 const content = {
 	english: {
@@ -29,15 +31,13 @@ const content = {
 	}
 }
 
-class Navbar extends Component {
-	static contextType = Context; 
-	render() {
-		//Simplys
-		const { classes } = this.props;
-		const { isDark, handleSwitch } = this.context;
-		//2nd context
-		const { language } = this.props.languageContext;
-		const { flag } = content[language];
+function Navbar(props) {
+	//Simplys
+	const { classes } = props;
+	const { isDark, handleSwitch } = useContext(Context);
+	//2nd context
+	const { language } = useContext(LanguageContext);
+	const { flag } = content[language];
 
 		return (
 					<div className={classes.root}>
@@ -64,7 +64,7 @@ class Navbar extends Component {
 					</AppBar>
 				</div>
 		)
-	}
 }
 
-export default withLanguageContext(withStyles(styles)(Navbar));
+
+export default withStyles(styles)(Navbar);

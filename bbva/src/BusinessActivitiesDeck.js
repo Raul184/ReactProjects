@@ -11,12 +11,11 @@ const uuidv4 = require('uuid/v4');
 export default class Deck extends Component {
 	static defaultProps = {
 		BusinessUnits: [
-			{ name: "BBVA Business" , id:"BBVA-Business" },
-			{ name: "BBVA Risk", id:"BBVA-Risk" },
-			{ name: "BBVA Potential", id:"BBVA-Potential" },
-			{ name: "BBVA Commercial Activity", id:"BBVA-Commercial-Activity" },
-			{ name: "BBVA Transacctions & Interactions",
-				id: "BBVA-Transacctions-Interactions"}
+			{ name: "Business" , id:"BBVA-Business" },
+			{ name: "Risk", id:"BBVA-Risk" },
+			{ name: "Potential", id:"BBVA-Potential" },
+			{ name: "Commercial Activity", id:"BBVA-Commercial-Activity" },
+			{ name: "Transacctions & Interactions", id: "BBVA-Transacctions-Interactions"}
 		]
 	}
 	render() {

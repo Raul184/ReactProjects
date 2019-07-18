@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // https://www.bbva.com/wp-content/uploads/2019/04/Logo-BBVA-1024x576.jpg
 
-import './styles/SlidingHeader.css'
+import './styles/Home.css'
 export default class SlidingHeader extends Component {
 	constructor() {
 		super();
@@ -30,7 +30,7 @@ export default class SlidingHeader extends Component {
 						<div className="Intro-links">
 							<i className="fa fa-user-circle" aria-hidden="true"></i>
 						</div>
-						<div className="Intro-description">Bravo, volumen de datos sencillo y en equilibrio diseñado para tí.
+						<div className="Intro-description">
 						</div>
 						<button className="trigger" onClick={this.handleClick}>
 

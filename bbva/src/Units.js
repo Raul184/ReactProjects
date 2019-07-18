@@ -20,7 +20,7 @@ export default function Units(props) {
 	}
 
 	return (
-		<div className="Units" style={style.Units}>	
+		<div className="Units">	
 			<h3 style={{ textAlign: "center" }}>{props.name}</h3>
 		</div>
 	)

@@ -27,14 +27,16 @@ export default class SlidingHeader extends Component {
 				<div className="Intro-content">
 					<h1 className="Intro-title">Enterprise Clients Insight</h1>
 					<div className="Intro-sub">
-						<div className="Intro-links">
-							<i className="fa fa-user-circle" aria-hidden="true"></i>
-						</div>
+							<div className="Intro-links">
+								<Link to="/Branch" className="item">
+									<i className="fa fa-user-circle" aria-hidden="true"></i>
+								</Link>
+							</div>
 						<div className="Intro-description">
 						</div>
-						<button className="trigger" onClick={this.handleClick}>
+					
 
-							<svg width="100%" height="100%" viewBox="0 0 60 60" preserveAspectRatio="none">
+							{/* <svg width="100%" height="100%" viewBox="0 0 60 60" preserveAspectRatio="none">
 								<g className="icon icon--grid">
 									<rect x="32.5" y="5.5" width="22" height="22"/>
 									<rect x="4.5" y="5.5" width="22" height="22"/>
@@ -45,9 +47,8 @@ export default class SlidingHeader extends Component {
 									<line x1="4.5" y1="55.5" x2="54.953" y2="5.046"/>
 									<line x1="54.953" y1="55.5" x2="4.5" y2="5.047"/>
 								</g>
-							</svg>
-							<span>View content</span>
-						</button>
+							</svg> */}
+							{/* <span>View content</span> */}
 					</div>
 				</div>			
 				</div>

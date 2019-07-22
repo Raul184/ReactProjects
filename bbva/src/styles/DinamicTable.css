@@ -1,0 +1,53 @@
+.DinamicTable{
+	padding: 0px 30px;
+	height: 100vh;
+	/* background-color: #003F7D; */
+	background: white;
+}
+/* BUTTONS
+ */
+ .DinamicTableMedia{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	background-color: #003F7D;
+	padding: 15px;
+ }
+ /* BUTTONS */
+ .DinamicTableMedia button{
+	/* border: none;
+	padding: 10px 20px;
+	border-radius: 25px;
+	background-color: white;
+	color: #0E2343; */
+ }
+
+ /* HOVER ON BUTTONS  */
+ .DinamicTableMedia button:hover{
+	 cursor: pointer;
+ }
+/* HEADER */
+.ListadoNav h1{
+	color: white;
+}
+h2{
+	display: block;
+	padding: 15px 25px;
+	margin:0;
+	background-color: #003F7D;
+	color: white;
+}
+.Tabs{
+	display: flex;
+	background-color: #003F7D;
+	padding: 20px;
+	color: white;
+}
+.DinamicTableContent{
+	color: grey;
+	margin: 20px;
+}
+.Tabs__tab{
+	border: 1px solid darkgray;
+	padding: 20px;
+}

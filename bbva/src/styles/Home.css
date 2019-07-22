@@ -1,5 +1,12 @@
+*::before, *::after, body{
+	box-sizing: border-box;
+}
 .container--open .Sliding-intro {
 	transform: translate3d(0, -45%, 0) translate3d(0, 250px, 0);
+	transition: 1s;
+}
+.container{
+	transition: 1s;
 }
 
 .Sliding-intro{
@@ -146,7 +153,7 @@ nav{
 	border-radius: 20px 0px 20px 0px;
 	transition: 0.3s;
 	cursor: pointer;
-	box-shadow: 0 0 0 30px white inset;
+	/* box-shadow: 0 0 0 30px white inset; */
 	color: #0E2343;
 	font-weight: 600;
 	transform: scale(1.1);

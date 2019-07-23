@@ -1,0 +1,30 @@
+//variables
+@import "../index.scss";
+
+.Nav{
+	background: $myBlack;
+	padding: 1.5rem 1rem;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+}
+.NavLinks{
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	text-align: center;
+}
+.Links{
+	text-decoration: none;
+	text-transform: capitalize;
+	font-size: 1.2rem;
+	color: $myWhite;
+	transition: all .2s ease-in-out;
+	&:hover{
+		color: $myGreen;
+	}
+}
+//Active link
+.active{
+	color: $myGreen;
+}

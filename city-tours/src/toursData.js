@@ -1,4 +1,4 @@
-const tours = [
+const allTours = [
 	{
 		id: 1,
 		city: "New York",
@@ -28,4 +28,4 @@ const tours = [
 		info: "blablalblalablablalblablab"
 	}
 ]
-export default tours;
+export default allTours;

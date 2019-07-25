@@ -1,0 +1,54 @@
+.main-header{
+	min-height: calc(100vh - 61px);
+	background: 
+	linear-gradient(rgba(241, 80, 37,.1), rgba(241, 80, 37,.1)) ,
+	url("https://blogs.ext.vt.edu/eatsmart-movemore/files/2014/12/iStock_000050848166_Large.jpg") center/cover no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	//title
+	h1{
+		font-size: 5rem;
+		text-shadow: 2px 2px 5px grey;
+		color: aliceblue;
+	}
+	//LINK
+	a{
+		position: absolute;
+		top: 70%;
+		padding: 10px 15px;
+		text-decoration: none;
+		color: white;
+		background: lightsalmon;
+		border-radius: 20px;
+		box-shadow: 2px 2px 5px aliceblue;
+		font-size: 1.5rem;
+		font-weight: 600;
+		left: 50%;
+		transform: translateX(-50%);
+		transition: all .1s linear;
+		&:hover{
+			padding: 8.5px 13.5px;
+			font-size: 1.45rem;
+			box-shadow: none;
+		}
+	}
+}
+//DISPLAY ON ERROR PAGE
+.main-error-header{
+	min-height: calc(100vh - 61px);
+	background: 
+	linear-gradient(rgba(241, 80, 37,.1), rgba(241, 80, 37,.1)) ,
+	url("https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.GSlJlHWh5EEmphe7oYmIMwHaHa%26pid%3DApi&f=1") center/cover no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	h1{
+		font-size: 3rem;
+		text-shadow: 2px 2px 5px grey;
+		color: aliceblue;
+	}
+	a{
+		display: none;
+	}
+}

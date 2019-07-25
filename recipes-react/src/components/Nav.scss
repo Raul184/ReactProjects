@@ -1,0 +1,11 @@
+.Navbar{
+	display: grid;
+	grid-template-columns: repeat(3 ,1fr);
+	padding: 1rem;
+	align-items: center;
+	a{
+		text-decoration: none;
+		color: #F15025;
+		font-size: 20px;
+	}
+}

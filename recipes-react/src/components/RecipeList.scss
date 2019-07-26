@@ -1,0 +1,16 @@
+//HEADING FOR RECIPES LIST
+h2{
+	text-align: center;
+	font-size: 2.5rem;
+	padding: 2rem;
+	padding: 1em;
+	text-transform: capitalize;
+}
+//List for all Recipes Item
+.List{
+	width: 95%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 1.2em;
+}

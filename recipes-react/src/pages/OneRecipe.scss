@@ -1,0 +1,44 @@
+.OneRecipeGrid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 94vh;
+	//SECTION 1
+	.can1{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		img{
+			border-radius: 30px;
+			padding: 10px ;
+		}
+	}
+	//SECTION 2
+	.can2{
+		h6{
+			font-size: 1.5rem;
+   		padding: 20px;
+		}
+		ul{
+			list-style: none;
+			li{
+				padding: 5px;
+				font-size: 1.2rem;
+				border-bottom: 1px solid silver;
+				width: 90%;
+			}
+		}
+	}
+}
+// ALL button LINKS IN WEB
+.linksOut{
+	text-decoration: none;
+	color: white;
+	background: rgb(243, 102, 64);
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px aliceblue;
+	font-size: 1.5rem;
+	font-weight: 600;
+	padding: 10px 15px;
+	margin: 10px;
+}

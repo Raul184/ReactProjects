@@ -15,7 +15,9 @@ function App() {
       <Switch>
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/recipes" render={() => <Recipes />} />
-        <Route exact path="/recipes/:id" render={() => <OneRecipe />} />
+        <Route exact path="/recipes/:id" render={
+          (routeParams) => <OneRecipe {...routeParams} />}
+        />
         {/* default page */}
         <Route render={() => <Error />} />
       </Switch>

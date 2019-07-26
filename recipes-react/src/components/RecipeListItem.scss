@@ -1,0 +1,30 @@
+// LIST ITEM CONTAINER FOR EVERY RECIPE FROM API
+.ListItem{
+	margin-bottom: 2rem;
+	align-self: start;
+	height: 400px;
+	img{
+		width: 100%;
+		max-height: 50%;
+	}
+	h3{
+		padding: 10px 15px;
+	}
+	h4{
+		padding: 10px 15px;
+	}
+	.btns{
+		background: lightgrey;
+		padding: 10px 15px;
+		a{
+			margin: 8px;
+			padding: 10px 14px;
+			display: inline-block;
+			border-radius: 12px;
+			background: blue;
+			text-decoration: none;
+			color: white;
+			font-weight: 600;
+		}
+	}
+}

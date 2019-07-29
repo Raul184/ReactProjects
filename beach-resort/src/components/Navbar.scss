@@ -1,0 +1,46 @@
+//NAVBAR
+.Navbar{
+	display: flex;
+	align-items: center;
+	background: rgb(235, 235, 235);
+	//LINKS
+	a{
+		display: inline-block;
+		padding: 20px;
+		margin-left: 80px;
+		font-size: 1.3rem;
+		color: rgb(183, 171, 153);
+		text-decoration: none;
+		text-shadow: 1px 1px 1px black;
+		transition: all .3s ease-out;
+	}
+	a.routes{
+		&:hover{
+			color: black;
+		}
+		&::after{
+			content: " ";
+			border-bottom: 1px solid rgb(183, 171, 153);
+			width: 10px;
+			height: 8px;
+			transition: all .3s ease-out;
+		}
+		&:hover::after{
+			display: block;
+			width: 60px;
+		}
+	}
+	//SVG ON TOGGLE DOWN/UP
+	.navBtn{
+		border: none;
+		svg{
+			display: none;
+			color: rgb(183, 171, 153);
+			font-size: 1.5rem;
+		}
+	}
+}
+//ON TOGGLE CLIcked
+.NavDown{
+	background: red;
+}

@@ -8,24 +8,26 @@ const RoomContext = React.createContext();
 
 //Provider
 class RoomProvider extends Component {
-	state = {
-		//all
-		rooms: [],
-		//filter
-		sortedRooms: [],
-		featuredRooms: [],
-		//spinner 
-		loading: true
+	constructor() {
+		super();
+		this.state = {
+			//all
+			rooms: [],
+			//filter
+			sortedRooms: [],
+			featuredRooms: [],
+			//spinner 
+			loading: true
+		}
+		this.getSelectedRoom = this.getSelectedRoom.bind(this);
 	}
 	//GET Data
 
 	//REQUEST for External Data on CDMount
 	componentDidMount() {
 		//Get Data BEING Called
-
 		//1. Sort data
 		let formattedRooms = this.formatData(Items);
-		console.log(formattedRooms);
 		//Filtering Featured Rooms
 		let featuredRooms = formattedRooms.filter(room => room.featured);
 		//2. Save it
@@ -48,10 +50,18 @@ class RoomProvider extends Component {
 		});
 		return allRooms;
 	}
+	//ON SELECTED ROOM CLICKED , Display it and routing it
+	getSelectedRoom(slug) {
+		let allRooms = [...this.state.rooms];
+		const selected = allRooms.find(room => room.slug === slug);
+		return selected;
+	}
 
 	render() {
 		return (
-			<RoomContext.Provider value={{...this.state}}>
+			<RoomContext.Provider
+				value={{ ...this.state, getSelected: this.getSelectedRoom }}
+			>
 				{this.props.children}
 			</RoomContext.Provider>
 		)
@@ -61,6 +71,5 @@ class RoomProvider extends Component {
 
 //Consumer
 const RoomConsumer = RoomContext.Consumer;
-
 
 export { RoomProvider, RoomConsumer, RoomContext };

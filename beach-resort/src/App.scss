@@ -1,16 +1,10 @@
 /* 
 DEFAULTS FOR BACKGROUND PAGES 
 */
-.defaultHero,
-.roomsHero{
-	min-height: calc(100vh - 83px);
-	background: url("./images/defaultBcg.jpeg") center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
+// .defaultHero,
+// .roomsHero{
+	
+// }
 .roomsHero{
 	background-image: url("./images/room-2.jpeg");
  	min-height: 60vh;

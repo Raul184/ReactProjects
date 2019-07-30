@@ -4,7 +4,7 @@ import './App.scss';
 import Nav from "./components/Navbar.js";
 //Pages
 import Home from "./pages/Home";
-import Rooms from "./pages/Rooms";
+import RoomsPage from "./pages/RoomsPage";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Home";
 //ROuting
@@ -17,7 +17,7 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/rooms/" render={() => <Rooms />} />
+        <Route exact path="/rooms/" render={() => <RoomsPage />} />
         <Route exact path="/rooms/:slug" render={
           (routeParams) => <SingleRoom {...routeParams} />}
         />

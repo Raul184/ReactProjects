@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import defaultImg from "../images/room-1.jpeg";
 //TYPES
 import PropTypes from "prop-types";
+import "./Room.scss";
 
 export default function Room({room}) {
-	console.log(room);
+	// console.log(room);
 	const { name, slug, pics, price } = room;
 	return (
 		<article className="Room">
-			<div className="Room-Image-Container">
 				<img src={pics[0] || defaultImg} alt={name} />
 				<div className="price">
 					<h6>{price}</h6>
@@ -18,12 +18,11 @@ export default function Room({room}) {
 				<Link
 					to={`rooms/${ slug }`} className="Room-link">Features
 				</Link>
-			</div>
 			<p className="Room-info">{name}</p>
 		</article>
 	)
 }
-
+//TYPING 
 Room.protoTypes = {
 	room: PropTypes.shape({
 		name: PropTypes.string.isRequired,

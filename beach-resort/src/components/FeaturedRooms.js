@@ -4,6 +4,8 @@ import { RoomContext } from "../Context";
 import OnLoading from "./OnLoading";
 import Room from "./Room";
 import Title from "./Title";
+//styles
+import "./FeaturedRooms.scss";
 
 export default class FeaturedRooms extends Component {
 	static contextType = RoomContext;
@@ -15,14 +17,15 @@ export default class FeaturedRooms extends Component {
 			)
 		)
 		return (
-			<section className="FeaturedRooms">
+			<>
 				<Title title="Featured Rooms" />
-				<div className="FeatureRooms-displayed">
-				{loading ? <OnLoading /> : featured}
-				</div>
-				
+				<section className="FeaturedRooms">
+					<div className="FeatureRooms-displayed">
+					{loading ? <OnLoading /> : featured}
+					</div>
 				{/* <OnLoading />				 */}
-			</section>
+				</section>
+			</>
 		)
 	}
 }

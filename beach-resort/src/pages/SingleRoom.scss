@@ -1,0 +1,42 @@
+.SingleRoom-imgs{
+	display: grid;
+	grid-template-columns: repeat(3 , 1fr);
+	padding: 1em;
+	justify-items: center;
+	//images
+	img{
+		display: block;
+		height: 220px;
+		margin: 1em;
+	}
+}
+.single-room-info{
+	display: flex;
+		//articles
+		article{
+		width: 49%;
+	}
+}
+section{
+	padding: 1.5em;
+}
+//headings within Sections
+h3{
+	text-transform: capitalize;
+	padding: .5em;
+}
+h6{
+	font-size: 1em;
+	text-transform: capitalize;
+	margin: 0 1em;
+}
+
+//Lista 
+ul{
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	list-style: none;
+	li{
+		padding: .5em;
+	}
+}

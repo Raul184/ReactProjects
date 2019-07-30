@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 //Data
 import Items from "./data";
+import Room from './components/Room';
 
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////  CONTEXT API IN A CLASS COMPONENT  ///////////////////////////////////////////////////////////////////////////////////////////
 //CONTEXT API TO PROVIDE ROOMS
 // Tree Provider
 const RoomContext = React.createContext();
@@ -11,7 +14,7 @@ class RoomProvider extends Component {
 	constructor() {
 		super();
 		this.state = {
-			//all
+			//all NEED TO CHECK THIS LAST ONE
 			rooms: [],
 			//filter
 			sortedRooms: [],
@@ -32,7 +35,7 @@ class RoomProvider extends Component {
 		let featuredRooms = formattedRooms.filter(room => room.featured);
 		//2. Save it
 		this.setState({
-			rooms: this.state.rooms,
+			rooms: [],
 			featuredRooms,
 			sortedRooms: formattedRooms,
 			loading: false
@@ -52,7 +55,8 @@ class RoomProvider extends Component {
 	}
 	//ON SELECTED ROOM CLICKED , Display it and routing it
 	getSelectedRoom(slug) {
-		let allRooms = [...this.state.rooms];
+		let allRooms = this.state.sortedRooms;
+		console.log(allRooms);
 		const selected = allRooms.find(room => room.slug === slug);
 		return selected;
 	}
@@ -68,8 +72,19 @@ class RoomProvider extends Component {
 	}
 }
 
-
-//Consumer
+//Consumer for FUNCTIONAL COMPONENTS
 const RoomConsumer = RoomContext.Consumer;
 
-export { RoomProvider, RoomConsumer, RoomContext };
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////  CONTEXT API IN A FUNCTIONAL COMPONENT  //////////////////////////////////////////////////////////////////////////////////////
+
+// function withRoomConsumer(Component){
+// 	return function wrappedConsumer(props){
+// 		return <Room.Consumer>
+// 			{value => < Component {...props} context={value}/>}
+// 			</Room.Consumer>
+// 	}
+// }
+
+// withRoomConsumer
+export { RoomProvider, RoomContext, RoomConsumer  };

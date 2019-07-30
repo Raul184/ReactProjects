@@ -1,0 +1,46 @@
+.Room{
+	text-align: center;
+	position: relative;
+	transition: all .3s ease-in-out;
+	//CONTAINER IMAGE
+	img{
+		width: 300px;
+		display: block;
+		max-width: 100%;	
+	}
+	// PRICE FOR ROOM 
+	.price{
+		font-size: .8em;
+		width: 25%;
+		position: absolute;
+		top: 0;
+		color: white;
+		background: rgba(39,12,15,.4);
+		padding: .5em;
+		border-radius: 0 0 15px 0;
+	}
+	// LINK ON TOP OF IMAGE
+	a{
+		text-decoration: none;
+		position: absolute;
+		top: 50%;
+		color: white;
+		transform: translate(-50%, -50%);
+		font-size: 1.2em;
+		background: rgba(39,12,15,.4);
+		padding: .5em;
+		border-radius:15px;
+		visibility: hidden;
+	}
+	//ROOM NAME SECTION
+	.Room-info{
+		padding: .6em 0;
+		text-transform: uppercase;
+		background: darkgray;
+		font-weight: 600;
+	}
+}
+//HOVER ON IMAGE
+.Room:hover a{
+	visibility:visible;
+}

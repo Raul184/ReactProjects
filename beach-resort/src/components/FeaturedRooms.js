@@ -4,9 +4,15 @@ import { RoomContext } from "../Context";
 import OnLoading from "./OnLoading";
 import Room from "./Room";
 import Title from "./Title";
-//styles
-import "./FeaturedRooms.scss";
 
+//STYLES
+const styles = {
+	FeatureRoomsDisplayed: {
+		display: "grid",
+		gridTemplateColumns: "repeat(3 ,1fr)",
+		justifyItems: "center"
+	}
+}	
 export default class FeaturedRooms extends Component {
 	static contextType = RoomContext;
 	render() {
@@ -20,10 +26,12 @@ export default class FeaturedRooms extends Component {
 			<>
 				<Title title="Featured Rooms" />
 				<section className="FeaturedRooms">
-					<div className="FeatureRooms-displayed">
+					<div
+						className="FeatureRoomsDisplayed"
+						style={styles.FeatureRoomsDisplayed}
+					>
 					{loading ? <OnLoading /> : featured}
 					</div>
-				{/* <OnLoading />				 */}
 				</section>
 			</>
 		)

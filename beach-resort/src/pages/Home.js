@@ -7,7 +7,7 @@ import FeaturedRooms from "../components/FeaturedRooms";
 import StyledHero from "../components/StyledHero"; 
 import { Link } from "react-router-dom";
 //styles
-import "./Home.scss";
+// import "./Home.scss";
 
 
 export default function Home() {

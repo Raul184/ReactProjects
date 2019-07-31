@@ -20,9 +20,19 @@ class RoomProvider extends Component {
 			sortedRooms: [],
 			featuredRooms: [],
 			//spinner 
-			loading: true
+			loading: true,
+			type: '',
+			capacity: 1,
+			price: 0,
+			minPrice: 0,
+			maxPrice: 0,
+			minSize: 0,
+			maxSize: 0,
+			breakfast: false,
+			pets: false
 		}
 		this.getSelectedRoom = this.getSelectedRoom.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	//GET Data
 
@@ -33,12 +43,19 @@ class RoomProvider extends Component {
 		let formattedRooms = this.formatData(Items);
 		//Filtering Featured Rooms
 		let featuredRooms = formattedRooms.filter(room => room.featured);
+		//Max. Prices
+		let maxPrice = Math.max(...formattedRooms.map(item => item.price));
+		//Max. Size
+		let maxSize = Math.max(...formattedRooms.map(item => item.size));
 		//2. Save it
 		this.setState({
-			rooms: [],
+			rooms: formattedRooms,
 			featuredRooms,
 			sortedRooms: formattedRooms,
-			loading: false
+			loading: false,
+			price: maxPrice,
+			maxPrice,
+			maxSize,
 		});
 	}
 	//Helpeer for Component Did Mount
@@ -61,10 +78,47 @@ class RoomProvider extends Component {
 		return selected;
 	}
 
+	//ON CHANGE
+	handleChange(e) {
+		const target = e.target;
+		//Grab control inputs value
+		const value = e.type === 'checkbox' ? target.checked : target.value;
+		const name = e.target.name;
+		//Set values in State
+		this.setState({
+			[name]: value
+		},
+			this.filterRooms
+		);
+	}
+
+	//After ON Change >> filer
+	filterRooms() {
+		console.log('hello');
+		let {
+			rooms, type, capacity, price,
+			minSize, maxSize, breakfast, pets } = this.state;
+		let tempItems;
+		let tempRooms = [...rooms];
+		if (type !== "all") {
+			tempItems = tempRooms.filter( room => room.type === type)
+			this.setState({
+				sortedRooms: tempItems
+			});
+		} else {
+			this.setState({
+				sortedRooms: tempRooms
+			});
+		}
+	}
 	render() {
 		return (
 			<RoomContext.Provider
-				value={{ ...this.state, getSelected: this.getSelectedRoom }}
+				value={{
+					...this.state,
+					getSelected: this.getSelectedRoom,
+					handleChange: this.handleChange
+				}}
 			>
 				{this.props.children}
 			</RoomContext.Provider>

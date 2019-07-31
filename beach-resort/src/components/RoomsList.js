@@ -1,7 +1,17 @@
 import React from 'react';
 import Room from "./Room";
-//Styles
-import "./RoomsList.scss";
+//STYLES
+const styles = {
+	roomListCenter:{
+		width: "80vw",
+		padding: "5rem 0",
+		margin: "0 auto",
+		display: "grid",
+		gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
+		gridRowGap: "2rem",
+		gridColumnGap: "35px"
+	}
+}
 
 export default function RoomsList({ rooms }) {
 	if (rooms.length === 0) {
@@ -13,7 +23,7 @@ export default function RoomsList({ rooms }) {
 	}
 	return (
 		<section className="roomList">
-			<div className="roomList-center">
+			<div className="roomListCenter" style={styles.roomListCenter}>
 				{
 					rooms.map(room => {
 						return <Room key={room.id} room={room} />

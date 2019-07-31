@@ -6,8 +6,7 @@ import { RoomConsumer } from "../Context";
 //Context API with Higher Order Component
 // import { withRoomConsumer } from "../Context";
 import OnLoading from "./OnLoading";
-//Styles
-import "./Rooms.scss";
+
 
 //NORMAL USE OF A CONTEXT API IN A FUNCTIONAL COMPONENT
 export default function Rooms() {

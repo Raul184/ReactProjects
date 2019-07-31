@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import "./Room.scss";
 
 export default function Room({room}) {
-	// console.log(room);
 	const { name, slug, pics, price } = room;
 	return (
 		<article className="Room">
@@ -22,7 +21,7 @@ export default function Room({room}) {
 		</article>
 	)
 }
-//TYPING 
+//TYPES ADDED FOR COMPONENT
 Room.protoTypes = {
 	room: PropTypes.shape({
 		name: PropTypes.string.isRequired,

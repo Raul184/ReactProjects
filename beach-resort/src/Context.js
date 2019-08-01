@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 //Data
 import Items from "./data";
-import Room from './components/Room';
+// import Room from './components/Room';
 
 ////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////  CONTEXT API IN A CLASS COMPONENT  ///////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +56,8 @@ class RoomProvider extends Component {
 			price: maxPrice,
 			maxPrice,
 			maxSize,
+			breakfast: this.state.breakfast,
+			pets: this.state.pets
 		});
 	}
 	//Helpeer for Component Did Mount
@@ -82,7 +84,7 @@ class RoomProvider extends Component {
 	handleChange(e) {
 		const target = e.target;
 		//Grab control inputs value
-		const value = e.type === 'checkbox' ? target.checked : target.value;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = e.target.name;
 		//Set values in State
 		this.setState({
@@ -94,22 +96,43 @@ class RoomProvider extends Component {
 
 	//After ON Change >> filer
 	filterRooms() {
-		console.log('hello');
 		let {
 			rooms, type, capacity, price,
 			minSize, maxSize, breakfast, pets } = this.state;
-		let tempItems;
 		let tempRooms = [...rooms];
+		//str to number
+		capacity = parseInt(capacity);
+		price = parseInt(price);
+		//FILTERS 
+		//FOR TYPE OF ROOM
 		if (type !== "all") {
-			tempItems = tempRooms.filter( room => room.type === type)
-			this.setState({
-				sortedRooms: tempItems
-			});
-		} else {
-			this.setState({
-				sortedRooms: tempRooms
-			});
+			tempRooms = tempRooms.filter( room => room.type === type)
 		}
+		//CAPACITY
+		if (capacity !== 1) {
+			tempRooms = tempRooms.filter( room => room.capacity >= capacity)
+		}
+		//PRICE
+		tempRooms = tempRooms.filter(room => room.price <= price)
+		
+		//SIZE
+		tempRooms = tempRooms.filter(
+			room => room.size >= minSize && room.size <= maxSize
+		)
+
+		//Breakfast
+		if (breakfast) {
+			tempRooms = tempRooms.filter(room => room.breakfast)
+		}
+
+		//Pets
+		if (pets) {
+			tempRooms = tempRooms.filter(room => room.pets)
+		}
+		
+		this.setState({
+			sortedRooms: tempRooms 
+		});
 	}
 	render() {
 		return (

@@ -1,0 +1,37 @@
+/* FONTS ADDED */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans&display=swap');
+/* font-family: 
+font-family: 'Montserrat', sans-serif; */
+
+/* VARIABLES */
+:root{
+	--primaryColor: #5fb7ea;
+	--primaryRGBA: rgba(0, 0, 0, .3);
+	--mainGrey: #fafafa;
+	--darkGrey: #5f5e5e;
+	--mainBlack: #222;
+	/* for transitions */
+	--mainTransition: all .3s easy-in-out;
+	--mainSpacing: .3rem;
+}
+/* HEADINGS */
+.text-title{
+	font-family: 'Montserrat', 'sans-serif';
+	font-weight: bold;
+	letter-spacing: var(--mainSpacing);
+	text-transform: capitalize;
+}
+.text-main{
+	color: var(--primaryColor);
+}
+/* BODY MAIN OVERALL FEATURES FOR CONTENT */
+body{
+	font-family: 'Open Sans', sans-serif !important;
+	background: var(--mainGrey) !important;
+	color: var(--mainBlack)
+}
+
+
+
+
+

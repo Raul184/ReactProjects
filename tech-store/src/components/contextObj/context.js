@@ -1,8 +1,9 @@
 //1. Context Object
 import React, { Component } from 'react';
-
-//Links
+//Links components
 import { linkTags } from "./linkTags";
+//Keys ID
+import uuid from "uuid";
 
 const ProductContext = React.createContext();
 
@@ -13,12 +14,13 @@ export class Provider extends Component {
 		super();
 		this.state = {
 			sideBar: false,
-			cartBar: false,
+			cartBar: true,
 			cartItems: [],
 			linksTag: linkTags
 		}
 		this.toogleCart = this.toogleCart.bind(this);
 		this.toogleSide = this.toogleSide.bind(this);
+		this.cartItemsAdded = this.cartItemsAdded.bind(this);
 	}
 	//SIDEBAR ON TOOGLE
 	toogleSide() {
@@ -34,6 +36,11 @@ export class Provider extends Component {
 		});
 	}
 
+	//Handle CartItemsAdded
+	cartItemsAdded(nueItem) {
+		let sorted = this.state.cartItems;
+		sorted = [ ...sorted, {item: nueItem , id: uuid()}]
+	}
 	render() {
 		return (
 			<ProductContext.Provider

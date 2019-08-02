@@ -8,10 +8,11 @@ font-family: 'Montserrat', sans-serif; */
 	--primaryColor: #5fb7ea;
 	--primaryRGBA: rgba(0, 0, 0, .3);
 	--mainGrey: #fafafa;
+	--mainWhite: #fff;
 	--darkGrey: #5f5e5e;
 	--mainBlack: #222;
 	/* for transitions */
-	--mainTransition: all .3s easy-in-out;
+	--mainTransition: all .4s ease-out;
 	--mainSpacing: .3rem;
 }
 /* HEADINGS */

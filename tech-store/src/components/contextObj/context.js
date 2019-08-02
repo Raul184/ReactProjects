@@ -1,6 +1,9 @@
 //1. Context Object
 import React, { Component } from 'react';
 
+//Links
+import { linkTags } from "./linkTags";
+
 const ProductContext = React.createContext();
 
 
@@ -11,7 +14,8 @@ export class Provider extends Component {
 		this.state = {
 			sideBar: false,
 			cartBar: false,
-			cartItems: []
+			cartItems: [],
+			linksTag: linkTags
 		}
 		this.toogleCart = this.toogleCart.bind(this);
 		this.toogleSide = this.toogleSide.bind(this);
@@ -26,7 +30,7 @@ export class Provider extends Component {
 	//CART TOOGLE
 	toogleCart() {
 		this.setState({
-			cart: !this.state.cartBar
+			cartBar: !this.state.cartBar
 		});
 	}
 
@@ -34,6 +38,7 @@ export class Provider extends Component {
 		return (
 			<ProductContext.Provider
 				value={{
+					...this.state,
 					toogleSideBar: this.toogleSide,
 					toogleCart: this.toogleCart
 				}

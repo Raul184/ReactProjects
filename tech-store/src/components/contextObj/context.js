@@ -15,7 +15,7 @@ export class Provider extends Component {
 		this.state = {
 			sideBar: false,
 			cartBar: true,
-			cartItems: [],
+			cartItems: [{item: "example" , id: uuid()}],
 			linksTag: linkTags
 		}
 		this.toogleCart = this.toogleCart.bind(this);
@@ -39,7 +39,10 @@ export class Provider extends Component {
 	//Handle CartItemsAdded
 	cartItemsAdded(nueItem) {
 		let sorted = this.state.cartItems;
-		sorted = [ ...sorted, {item: nueItem , id: uuid()}]
+		sorted = [...sorted, { item: nueItem, id: uuid() }]
+		this.setState({
+			cartItems: sorted
+		});
 	}
 	render() {
 		return (

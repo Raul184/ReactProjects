@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
 //Pages
-import HomePage from "./components/pages/HomePage";
+import HomePage from "./pages/HomePage";
 import AboutPage from "./components/pages/AboutPage";
 import ContactPage from "./components/pages/ContactPage";
 import CartPage from "./components/pages/CartPage";
 import ProductsPage from "./components/pages/ProductsPage";
 import OneProductPage from "./components/pages/OneProductPage";
-import Default from "./components/pages/Default";
-
+import Default from "./pages/Default";
 //ROUTING
 import { Switch, Route } from "react-router-dom";
 //MAIN WEB COMPONENTS

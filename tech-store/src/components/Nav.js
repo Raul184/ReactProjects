@@ -5,9 +5,6 @@ import { FaBars, FaCartPlus } from "react-icons/fa";
 import Logo from "../images/logo.svg";
 //Consumer
 import {Consumer} from "./contextObj/context";
-
-import SideBar from "./Sidebar";
-import SideCart from "./Sidecart";
 //styles
 import styled from "styled-components";
 
@@ -15,7 +12,6 @@ export default function Nav() {
 	return (
 		<Consumer>
 			{value => {
-				console.log(value);
 				const { cartItems, toogleSideBar, toogleCart } = value;
 				return (
 					<NavWrapper>

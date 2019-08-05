@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 //Links components
 import { linkTags } from "./linkTags";
+//Social Media
+import { socialData } from "./socialData";
 //Keys ID
 import uuid from "uuid";
 
@@ -16,7 +18,8 @@ export class Provider extends Component {
 			sideBar: false,
 			cartBar: true,
 			cartItems: [{item: "example" , id: uuid()}],
-			linksTag: linkTags
+			linksTag: linkTags,
+			media: socialData
 		}
 		this.toogleCart = this.toogleCart.bind(this);
 		this.toogleSide = this.toogleSide.bind(this);

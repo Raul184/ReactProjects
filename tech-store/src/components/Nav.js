@@ -12,7 +12,7 @@ export default function Nav() {
 	return (
 		<Consumer>
 			{value => {
-				const { cartItems, toogleSideBar, toogleCart } = value;
+				const { cart, toogleSideBar, toogleCart } = value;
 				return (
 					<NavWrapper>
 						<div className="NavCenter">
@@ -20,7 +20,7 @@ export default function Nav() {
 							<img className="NavImg" src={Logo} alt="Company" />
 							<div className="NavCart">
 								<FaCartPlus className="NavIcon" onClick={toogleCart} />
-								<div className="NavCartItems">{cartItems.length}</div>
+								<div className="NavCartItems">{cart.length}</div>
 							</div>
 						</div>	
 					</NavWrapper>

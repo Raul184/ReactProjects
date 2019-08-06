@@ -8,10 +8,15 @@ export default function Sidecart() {
 	return (
 		<Consumer>
 			{value => {
-				const { cartBar , cartItems } = value;
+				const { cartBar , cart } = value;
 				return <CartWrap show={cartBar}>
 					<ul>
-						{cartItems.map(item => <li key={item.id}>{item.item} <FaEraser /></li>)}
+						{cart.map(item => (
+							<li key={item.id}>
+								<p>{item.title} <FaEraser /></p>
+								<p>Total:{item.total}$ units:{item.count}</p>
+							</li>
+						))}
 					</ul>
 				</CartWrap>
 			}}	
@@ -32,17 +37,20 @@ const CartWrap = styled.nav`
 	border-radius: 15px;
 	/* border-bottom: 3px solid var(--primaryColor); */
 	transition: all .8s ease-in-out;
+	z-index: 20;
 	ul{
 		list-style: none;
 		li{
 			text-transform: capitalize;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: space-around;
+			border-bottom: 1px solid var(--primaryColor);
 		}
 	}
 	@media (min-width: 576px){
-		width: 15rem;
+		width: 18rem;
 		margin-right: 1em;
 		transition: all .8s ease-in-out;
 	}

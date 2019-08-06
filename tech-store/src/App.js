@@ -28,7 +28,7 @@ export default class App extends React.Component {
         <Route exact path="/about" render={() => <AboutPage />} />
         <Route exact path="/contact" render={() => <ContactPage />} />
         <Route exact path="/products" render={() => <ProductsPage />} />
-        <Route exact path="/product/:id" render={() => <OneProductPage />} />
+        <Route exact path="/products/:id" render={(routeparams) => <OneProductPage {...routeparams} />} />
         <Route exact path="/cart" render={() => <CartPage />} />
         <Route component={Default} />
       </Switch>

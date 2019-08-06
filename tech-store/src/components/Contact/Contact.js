@@ -17,6 +17,7 @@ export default function Contact() {
 				{/* Message */}
 					<textarea name="message" className="messageForm" rows="10" placeholder="hello Bro"></textarea>
 				</form>
+			<button type="button" className="main-link" style={{margin: "2rem" , width: "50%"}}>Send</button>
 		</FormulaioWrap>
 	)
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Consumer } from "../contextObj/";
+import { Consumer } from "../contextObj/context";
 
 export default function CartTotals() {
 	return (

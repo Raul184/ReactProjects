@@ -28,8 +28,15 @@ export class Provider extends Component {
 			storeProducts: [],
 			filteredProducts: [],
 			featuredProducts: [],
-			onLoading: false,
-			singleProduct: this.getSPStorage()
+			onLoading: true,
+			singleProduct: this.getSPStorage(),
+			//FILTER on Products
+			search: '',
+			price: 0,
+			min: 0,
+			max: 0,
+			company: 'all',
+			shipping: false
 		}
 		this.toogleCart = this.toogleCart.bind(this);
 		this.toogleSide = this.toogleSide.bind(this);
@@ -37,10 +44,12 @@ export class Provider extends Component {
 		this.setProducts = this.setProducts.bind(this);
 		this.displayProduct = this.displayProduct.bind(this);
 		this.accountTotals = this.accountTotals.bind(this);
+		this.clearCart = this.clearCart.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
-	//COMPONENT DID MOUNT
-	///////////////////////////////////////////////////////////
-	// 1.   On Load
+//COMPONENT DID MOUNT
+///////////////////////////////////////////////////////////
+// 1.   On Load
 		componentDidMount() {
 			//get products from API
 			// const Items = await Fetch(url)
@@ -48,8 +57,8 @@ export class Provider extends Component {
 			this.setProducts(items);
 		}
 	
-	//HELPERS FOR COMPONENT DID MOUNT
-	// 2.   Set Products from API
+//HELPERS FOR COMPONENT DID MOUNT
+// 2.   Set Products from API
 		setProducts(arr) {
 			// Format ALL products DB
 			let storedProducts = arr.map(item => {
@@ -61,6 +70,10 @@ export class Provider extends Component {
 			});
 			// Featured Products
 			let featured = storedProducts.filter(item => item.featured);
+			//Max price from Catalogue
+			let max = Math.max(...storedProducts.map(item => item.price));
+			//Min price Catalogue
+			let min = Math.min(...storedProducts.map(item => item.price));
 			this.setState({
 				storeProducts: storedProducts,
 				//is it necessary?
@@ -68,7 +81,9 @@ export class Provider extends Component {
 				featuredProducts: featured,
 				cartItems: this.getStorage(),
 				singleProduct: this.getSPStorage(),
-				onLoading: false
+				onLoading: false,
+				max,
+				min
 			});
 		}
 		//Local Storage for items on CART Store
@@ -84,17 +99,18 @@ export class Provider extends Component {
 			}
 			return product;
 	}
-	//////////////////////////////////////////////////////////////////
-	//UI TOOGLEs
-	///////////////////////////////////////////////////////////
-	// SIDEBAR ON TOOGLE
+//////////////////////////////////////////////////////////////////
+//UI TOOGLEs
+///////////////////////////////////////////////////////////
+// SIDEBAR ON TOOGLE
 	toogleSide() {
 		this.setState({
 			sideBar: !this.state.sideBar
-		});
+		}, this.sortData
+		);
 	}
 
-	// CART TOOGLE
+// CART TOOGLE
 	toogleCart() {
 		this.setState({
 			cartBar: !this.state.cartBar
@@ -174,10 +190,56 @@ export class Provider extends Component {
 	}
 	//Clear Cart
 	clearCart() {
-		localStorage.clear();
+		console.log('clicked');
+		this.setState({
+			cart: []
+		}, () => {
+			this.addTotals()
+			this.saveToStorage()		
+			}
+		)
 	}
-
 ///////////////////////////////////////
+// FILTERING
+///////////////////////////////////////
+	handleChange(e) {
+		const name = e.target.name;
+		const value = e.target.value;
+		this.setState({
+			[name]: value
+		}, this.sortData);
+	}
+	
+	//Sort data afterwards
+	sortData() {
+		const { storeProducts, price, company, search } = this.state;
+		//for companies
+		let temProducts = [...storeProducts];
+		//for price
+		let temPrice = parseInt(price);
+		//Filter by company
+		if (company !== "all") {
+			temProducts = temProducts.filter(item => item.company === company);
+		}
+		
+		//Filter by Price
+		temProducts.filter(item => item.price <= temPrice)
+		
+		//SEARCH
+		if (search.length > 0) {
+			temProducts = temProducts.filter(item => {
+			let fsearch = search.toLowerCase();
+			let ftitle = item.title.toLowerCase().slice(0, search.length);
+				if (fsearch === ftitle) {
+					return item;
+				}
+			})
+		}
+		this.setState({
+			filteredProducts: temProducts
+		});
+		
+	}
 	render() {
 		return (
 			<ProductContext.Provider
@@ -186,7 +248,10 @@ export class Provider extends Component {
 					toogleSideBar: this.toogleSide,
 					toogleCart: this.toogleCart,
 					add: this.addItemsToCart,
-					display: this.displayProduct
+					display: this.displayProduct,
+					clearCart: this.clearCart,
+					handleChange: this.handleChange,
+					storedProducts: this.state.storeProducts
 				}
 			}>
 				{this.props.children}

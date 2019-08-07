@@ -7,6 +7,7 @@ export default function ProductsPage() {
 	return (
 		<>
 			<Hero img={productsBcg} />
+			
 			<Products />
 		</>
 	)

@@ -7,10 +7,10 @@ export default function CartTotals() {
 			<Consumer>
 				{value => {
 					const { clearCart, cartSubTotal, cartTax, cartTotal } = value;
-					return <div className="Clear">
+					return <div className="Clear" style={{textAlign: "center"}}>
 						<button
 							className="main-link"
-							onClick={() => clearCart}
+							onClick={() => clearCart()}
 							style={{ margin: "2rem" }}
 						>
 							Clear Total

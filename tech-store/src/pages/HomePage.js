@@ -13,7 +13,7 @@ export default function HomePage() {
 	return (
 		<>
 			<Hero title="Trending Gadgets" max={0} img={mainBcg}>
-				<Link to="/products" className="main-link" style={{ margin: "2rem" }}>
+				<Link to="/product" className="main-link" style={{ margin: "2rem" }}>
 					Our Products
 				</Link>
 			</Hero>

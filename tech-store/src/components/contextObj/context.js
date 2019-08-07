@@ -21,21 +21,72 @@ export class Provider extends Component {
 			linksTag: linkTags,
 			media: socialData,
 			cartBar: false,
-			cart: [],
-			cartSubTotal: 0,
+			cart: this.getStorage(),
+			cartSubtotal: 0,
 			cartTax: 0,
+			cartTotal: 0,
 			storeProducts: [],
 			filteredProducts: [],
 			featuredProducts: [],
 			onLoading: false,
-			singleProduct: {}
+			singleProduct: this.getSPStorage()
 		}
 		this.toogleCart = this.toogleCart.bind(this);
 		this.toogleSide = this.toogleSide.bind(this);
 		this.addItemsToCart = this.addItemsToCart.bind(this);
 		this.setProducts = this.setProducts.bind(this);
+		this.displayProduct = this.displayProduct.bind(this);
+		this.accountTotals = this.accountTotals.bind(this);
 	}
-	//UI
+	//COMPONENT DID MOUNT
+	///////////////////////////////////////////////////////////
+	// 1.   On Load
+		componentDidMount() {
+			//get products from API
+			// const Items = await Fetch(url)
+			// Items = Items.json();
+			this.setProducts(items);
+		}
+	
+	//HELPERS FOR COMPONENT DID MOUNT
+	// 2.   Set Products from API
+		setProducts(arr) {
+			// Format ALL products DB
+			let storedProducts = arr.map(item => {
+				const id = item.sys.id;
+				const image  = item.fields.image.fields.file.url;
+		
+				const product = { id, ...item.fields, image };
+				return product;
+			});
+			// Featured Products
+			let featured = storedProducts.filter(item => item.featured);
+			this.setState({
+				storeProducts: storedProducts,
+				//is it necessary?
+				filteredProducts: storedProducts,
+				featuredProducts: featured,
+				cartItems: this.getStorage(),
+				singleProduct: this.getSPStorage(),
+				onLoading: false
+			});
+		}
+		//Local Storage for items on CART Store
+		saveToStorage() {
+			localStorage.setItem('product', JSON.stringify(this.state.cart));
+		}
+		getStorage() {
+			let product;
+			if (localStorage.getItem('product')) {
+				product = JSON.parse(localStorage.getItem('product'));
+			} else {
+				product = [];
+			}
+			return product;
+	}
+	//////////////////////////////////////////////////////////////////
+	//UI TOOGLEs
+	///////////////////////////////////////////////////////////
 	// SIDEBAR ON TOOGLE
 	toogleSide() {
 		this.setState({
@@ -50,46 +101,25 @@ export class Provider extends Component {
 		});
 	}
 
-	// 1.   On Load
-	componentDidMount() {
-		//get products from API
-		// const Items = await Fetch(url)
-		// Items = Items.json();
-		this.setProducts(items);
-	}
-///////////////////////////////////////
-//HELPERS FOR COMPONENT DID MOUNT
-// 2.   Set Products from API
-	setProducts(arr) {
-		// Format ALL products DB
-		let storedProducts = arr.map(item => {
-			const id = item.sys.id;
-			const image  = item.fields.image.fields.file.url;
-	
-			const product = { id, ...item.fields, image };
-			return product;
-		});
-		// Featured Products
-		let featured = storedProducts.filter(item => item.featured);
+///////////////////////////////////////////////////////////
+// LOCAL STORAGE FOR SINGLE PRODUCT  
+///////////////////////////////////////////////////////////
+	setSingleProduct(id) {
+		let product = this.state.storeProducts.find(item => item.id === id);
+		localStorage.setItem('singleProduct', JSON.stringify(product));
 		this.setState({
-			storeProducts: storedProducts,
-			//is it necessary?
-			filteredProducts: storedProducts,
-			featuredProducts: featured,
-			cartItems: this.getStorage(),
-			singleProduct: this.getSPStorage(),
+			singleProduct: { ...product },
 			onLoading: false
-		});
-	}
-	//Local Storage for items on CART Store
-	getStorage() {
-		return [];
+		})
 	}
 	//
 	getSPStorage() {
-		return [];	
+		return localStorage.getItem('singleProduct') ?
+			JSON.parse(localStorage.getItem('singleProduct')) :
+			{};
 	}
-// ADD PRODUCTS SECTION
+///////////////////////////////////////////////////////////
+// UI FUNCTIONALITY METHODS FOR CART page and SIDECART COMPONENT
 ///////////////////////////////////////
 	
 	//Handle ADD item
@@ -123,20 +153,28 @@ export class Provider extends Component {
 			cartBar: true
 		}, () => {
 				this.addTotals();
-				this.getStorage();
+				this.saveToStorage();
 		})
 	}
 	//DISPLAY A product
 	displayProduct(id) {
-		console.log(id);
+		let oneSelected = this.state.storeProducts.find(item => item.id === id)
+		this.setState({
+			singleProduct: oneSelected,
+			onLoading: false
+		},
+		)
 	}
 	//Handle + Totals
 	addTotals() {
 		
 	}
 	//Contabilizar TOTals
-	accountTotals() {
-		
+	accountTotals(){
+	}
+	//Clear Cart
+	clearCart() {
+		localStorage.clear();
 	}
 
 ///////////////////////////////////////

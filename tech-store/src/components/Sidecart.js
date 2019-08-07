@@ -1,8 +1,7 @@
 import React from 'react'
 import { Consumer } from "./contextObj";
 import styled from "styled-components";
-//Icons
-import { FaEraser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Sidecart() {
 	return (
@@ -13,11 +12,16 @@ export default function Sidecart() {
 					<ul>
 						{cart.map(item => (
 							<li key={item.id}>
-								<p>{item.title} <FaEraser /></p>
-								<p>Total:{item.total}$ units:{item.count}</p>
+								<img width="35" src={item.image} alt="cartItem" />
+								<div>
+									<h6>{item.title}</h6>
+									<h6>Price:{item.total}</h6>
+									<h6>$ Amount:{item.count}</h6>
+								</div>
 							</li>
 						))}
 					</ul>
+					<Link to="/cart" className="main-link">Cart Page</Link>
 				</CartWrap>
 			}}	
 		</Consumer>

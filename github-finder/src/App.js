@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import Nav from "./components/Nav";
 import Users from "./components/Users";
 import Search from "./components/Search";
+import { Switch, Route } from "react-router-dom";
+import SingleUser from "./components/SingleUser";
 
 import './App.css';
 
 export default class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   }
@@ -49,17 +52,50 @@ export default class App extends Component {
   //CLEAR
   clear = () => { this.setState({users: ""})}
 
+  //Single USEr Request
+  singleUserHandler = async (username) => {
+    this.setState({ loading: true })
+    //Make request
+    const request = await fetch(`https://api.github.com/users/${ username }`);
+    // ?client_id={process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${ process.env.REACT_APP_GITHUB_CLIENT_SECRET 
+     //format
+    const format = await request.json();
+    console.log(format);
+    //set User
+    this.setState({ user: format, loading: false });
+  }
+
   render() {
+    const { users, loading, user } = this.state;
     return (
       <div className="App">
         <Nav />
         <div className="container">
-          <Search searchUser={this.searchUser}
-            clear={this.clear}
-            display={this.state.users.length > 0 ? true : false}
-            runAlert={this.runAlert}
-          />
-          <Users loading={this.state.loading} users={this.state.users}/>
+          {/* ROUTES */}
+          <Switch>
+            <Route exact path='/home'
+              render={props => (
+              <>
+                <Search searchUser={this.searchUser}
+                clear={this.clear}
+                display={users.length > 0 ? true : false}
+                runAlert={this.runAlert}
+                />
+                <Users loading={loading} users={users} />
+              </>
+              )}
+            />
+            <Route exact path='/home/:login' render={ (routeParams) => (
+              <SingleUser
+                {...routeParams}
+                getUser={this.singleUserHandler}
+                user={user}
+                loading={loading}
+              />
+              )}
+            />
+          </Switch>
+          
         </div>
       </div>
     )

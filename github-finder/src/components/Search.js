@@ -59,7 +59,6 @@ export default class Search extends Component {
 					display && <button className="btn btn-block btn-light"onClick={this.handleClick}> Clear
 					</button>
 				}
-				
 			</div>
 		)
 	}

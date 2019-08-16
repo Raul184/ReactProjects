@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Nav from "./components/Nav";
 import Users from "./components/Users";
-import Search from "./components/Search";
+import SearchII from "./components/SearchII";
 import { Switch, Route } from "react-router-dom";
-import SingleUser from "./components/SingleUser";
+import UserII from "./components/UserII";
 
 import './App.css';
 
@@ -14,7 +14,7 @@ export default class App extends Component {
     loading: false,
     alert: null
   }
-  //COMPDIDMOUNT
+  //COMPONENTDIDMOUNT
   async componentDidMount() {
     //on loading
     this.setState({
@@ -43,12 +43,7 @@ export default class App extends Component {
       loading: false
     })
   }
-  //Alert if EMPTY Submit
-  runAlert = (txt, type) => {
-    this.setState({
-      alert: { msg:txt, type: type }
-    });
-  }
+
   //CLEAR
   clear = () => { this.setState({users: ""})}
 
@@ -76,17 +71,17 @@ export default class App extends Component {
             <Route exact path='/home'
               render={props => (
               <>
-                <Search searchUser={this.searchUser}
+                <SearchII searchUser={this.searchUser}
                 clear={this.clear}
                 display={users.length > 0 ? true : false}
-                runAlert={this.runAlert}
+                // runAlert={this.runAlert}
                 />
                 <Users loading={loading} users={users} />
               </>
               )}
             />
             <Route exact path='/home/:login' render={ (routeParams) => (
-              <SingleUser
+              <UserII
                 {...routeParams}
                 getUser={this.singleUserHandler}
                 user={user}

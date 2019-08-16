@@ -20,7 +20,7 @@ export default function Users({users , loading}) {
 
 //TYPES for Component
 Users.propTypes = {
-	users: PropTypes.array.isRequired,
+	users: PropTypes.array.isRequired || null,
 	loading: PropTypes.bool.isRequired
 }
 //Styles

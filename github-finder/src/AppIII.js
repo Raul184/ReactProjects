@@ -1,9 +1,10 @@
 import React from 'react';
 import Nav from "./components/Nav";
 import UserIII from "./components/UserIII";
-import UsersIII from "./components/UsersIII";
-import SearchIII from "./components/SearchIII";
 import { Switch, Route } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Error from "./components/pages/Error";
+
 
 //Context-Reducer
 import GithubState from "./context/GithubState";
@@ -18,20 +19,12 @@ export default function AppIII() {
         <div className="container">
           {/* ROUTES */}
           <Switch>
-            <Route exact path='/home'
-              render={() => (
-              <>
-								<SearchIII/>
-                <UsersIII/>
-              </>
-              )}
+            <Route exact path='/' render={() => <Home />}/>
+            <Route exact path='/user/:login' render={ (routeParams) => (
+              <UserIII {...routeParams} />)}
             />
-            <Route exact path='/home/:login' render={ (routeParams) => (
-              <UserIII
-                {...routeParams}
-              />
-              )}
-            />
+            {/* ERROR */}
+            <Route component={Error} />
           </Switch>
           
         </div>

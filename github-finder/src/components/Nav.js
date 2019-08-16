@@ -7,7 +7,7 @@ export default function Nav({title, icon}){
 		return (
 			<nav className="navbar bg-primary">
 				<h1>{icon}{title}</h1>
-				<ul><li><Link to='/home'>Home</Link></li></ul>
+				<ul><li><Link to='/'>Home</Link></li></ul>
 			</nav> 
 		)
 }

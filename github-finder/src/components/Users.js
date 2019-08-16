@@ -1,8 +1,8 @@
-import React from 'react';
+import React , { useContext }from 'react';
 import UserItem from "./UserItem.js";
 import PropTypes from "prop-types"
 
-export default function Users({users , loading}) {
+export default function Users({ users, loading }) {
 	return (
 		<div className="Users" style={usersStyle}>
 			{

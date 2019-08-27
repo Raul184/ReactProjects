@@ -7,3 +7,21 @@ cons [ value , setValue ] = useState(initial value for value);
 name === this.state.name 
 
 e.target.name = e.target.value
+
+=====================================================================
+				PROP.Types
+=====================================================================
+
+
+
+
+
+=====================================================================
+				REACT-ROUTER-DOM
+=====================================================================
+npm i --save react-router-dom
+
+import {Switch , Route} 
+
+
+

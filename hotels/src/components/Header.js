@@ -12,10 +12,17 @@ export default function Header() {
 			<header className="Header">
 				<div className="Header-Logo">Logo</div>
 				<nav>
-					<NavLink activeClassName="active" to="/createAds">Create Ads</NavLink>
-					<NavLink activeClassName="active" to="/AboutUs">About Us</NavLink>
-					<NavLink activeClassName="active" to="/LogIn">Log In</NavLink>
-					<NavLink activeClassName="active" to="/Register">Register</NavLink>
+					<NavLink activeClassName="active" exact to="/">Home</NavLink>
+					<NavLink activeClassName="active" exact to="/createAds">
+						Post an add
+					</NavLink>
+					<NavLink activeClassName="active" exact to="/AboutUs">
+						About Us
+					</NavLink>
+					<NavLink activeClassName="active" exact to="/LogIn">Log In</NavLink>
+					<NavLink activeClassName="active" exact to="/Register">
+						Register
+					</NavLink>
 				</nav>
 			</header>
 		</Wrap>

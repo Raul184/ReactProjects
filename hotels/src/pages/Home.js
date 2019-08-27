@@ -1,7 +1,7 @@
 import React from 'react'
 //Comp.
-import Filter from '../components/Filter';
-import Listings from '../components/Listings';
+import Filter from '../components/FilterSection/Filter';
+import Listings from '../components/ListingsSection/Listings';
 //SASS
 import './Home.scss';
 

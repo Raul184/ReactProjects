@@ -5,12 +5,17 @@ import ListingsTable from './ListingsTable';
 
 export default function Listings() {
 	return (
-		<div className="Listings">
+		<div className="Listings" style={styles}>
 			<Search />
 			<SortBy />
 			<ListingsTable />
 			<section className="Listings-Pagination">
+				{/* MAP HERE */}
 			</section>
 		</div>
 	)
+}
+
+const styles={
+	margin: "1rem"
 }

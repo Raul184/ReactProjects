@@ -5,6 +5,8 @@ import {
 	FaLocationArrow,
 	FaMoneyBill
 } from 'react-icons/fa';
+//styles
+import "./ListingItem.scss";
 
 export default function ListingItem() {
 	return (
@@ -24,7 +26,7 @@ export default function ListingItem() {
 						<span>Feature 1</span>
 						<span>Feature 1</span>
 					</div>
-					</div>
+				</div>
 				<span>Apartment name</span>
 			</div>	
 			<p><FaMoneyBill/>Price</p>

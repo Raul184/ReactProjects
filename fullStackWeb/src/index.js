@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link , withRouter} from 'react-router-dom';
+import { BrowserRouter, Route, withRouter} from 'react-router-dom';
 
 import Login from './components/Login'
 import Navbar from './components/Navbar';
@@ -12,27 +12,63 @@ import CreateArticle from './components/CreateArticle';
 
 import registerServiceWorker from './registerServiceWorker';
 
-//HIgh Order Comp.
-const Main = withRouter( (props) => {
-  return (
-    <div>
+//Adding state to Main comp.
+
+class App extends React.Component {
+  
+  state = {
+    authUser: null
+  }
+
+  componentDidMount() {
+    //user logged ?
+    const user = localStorage.getItem( 'user' );
+
+    if ( user ) {
+      //Single Source of Truth for Main Components
+      this.setState( {
+        authUser: JSON.parse(user)
+      })
+    }
+  }
+  
+  render() {
+    const { location } = this.props;
+    console.log( this.state.authUser );
+    return (
+      <div>
       {
-        props.location.pathname !== '/login' ? <Navbar /> : null
+        location.pathname !== '/login' &&
+        location.pathname !== '/signup' && <Navbar authUser={this.state.authUser} />
       }
-      
       <Route exact path="/" component={Welcome} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/article/:slug" component={SingleArticle} />
       <Route path="/articles/create" component={CreateArticle} />
-      <Footer />
-    </div>
+      {
+        location.pathname !== '/login' &&
+        location.pathname !== '/signup' && <Footer /> 
+      }
+      </div>
+    )
+  }
+}
+
+
+
+//HIgh Order Comp.  ++ Routing added to footer && Nav
+const Main = withRouter( ( props ) => {
+  return (
+    <App {...props} />
   );
-})  
+} );  
 
 ReactDOM.render(
   <BrowserRouter>
     <Main />
   </BrowserRouter>
-  , document.getElementById('root'));
+  , document.getElementById( 'root' )
+);
+
 registerServiceWorker();

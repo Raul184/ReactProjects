@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 //validations
 import { validateAll } from 'indicative/validator'
+//api
+import axios from 'axios';
+//url
+import config from '../../config';
 
 export default class index extends Component {
   state = {
@@ -39,7 +43,32 @@ export default class index extends Component {
 
     validateAll( data, rules , messages)
       .then( () => { 
-        console.log( 'Success' )
+        //Success ? Req to API
+        axios.post( `${ config.apiUrl }/auth/register`, {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
+        })
+        .then(
+          response => {
+            //save User session
+            localStorage.setItem( 'user', JSON.stringify(response.data.data) );
+            //redirect to homepage
+            this.props.history.push( '/' );
+          }
+        )
+        .catch(
+          errors => {
+            //Errors ? Grab it and display to User
+            const formatErrors = {};
+            //Server's only response with 'email' errors
+            formatErrors[ 'email' ] = errors.response.data[ 'email' ][ 0 ];
+            //State
+            this.setState( {
+              errors: formatErrors
+            } ); 
+          }
+        );
       })
       .catch( errors => {
         //format Errors

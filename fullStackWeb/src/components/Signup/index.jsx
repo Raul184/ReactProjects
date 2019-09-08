@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-//validations
-import { validateAll } from 'indicative/validator'
-//api
-import axios from 'axios';
-//url
-import config from '../../config';
 
 export default class index extends Component {
   state = {
@@ -23,60 +17,24 @@ export default class index extends Component {
   }
 
   //On Submit
-  handleSubmit = ( e ) => {
+  handleSubmit = async ( e ) => {
     e.preventDefault();
-    
-    //Validations
-    const data = this.state;
-    //rules to apply
-    const rules = {
-      name: 'required|string',
-      email: 'required|email',
-      password: 'required|min:6|confirmed'
-    }
-    //messages to display
-    const messages = {
-      required: 'Sorry, this field is required',
-      'email.required' : "Invalid email address",
-      'password.confirmed': "Passwords don't match"
-    }
+    const data = this.state; 
 
-    validateAll( data, rules , messages)
-      .then( () => { 
-        //Success ? Req to API
-        axios.post( `${ config.apiUrl }/auth/register`, {
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password
-        })
-        .then(
-          response => {
-            //save User session
-            localStorage.setItem( 'user', JSON.stringify(response.data.data) );
-            //redirect to homepage
-            this.props.history.push( '/' );
-          }
-        )
-        .catch(
-          errors => {
-            //Errors ? Grab it and display to User
-            const formatErrors = {};
-            //Server's only response with 'email' errors
-            formatErrors[ 'email' ] = errors.response.data[ 'email' ][ 0 ];
-            //State
-            this.setState( {
-              errors: formatErrors
-            } ); 
-          }
-        );
+    try {
+      const response = await this.props.registerUser( data );
+      //local session
+      localStorage.setItem( 'user', JSON.stringify( response) );
+      //Awareness of Authenticated user in
+      this.props.setAuthUser( response);
+      //Redirect auth User
+      this.props.history.push( '/' );
+    }
+    catch ( errors ) {
+      this.setState( {
+        errors
       })
-      .catch( errors => {
-        //format Errors
-        const formatErrors = {};
-        errors.forEach( error => formatErrors[ error.field ] = error.message );
-        //Stock erros in State
-        this.setState( { errors : formatErrors  });
-      });
+    }
   }
 
   render() {

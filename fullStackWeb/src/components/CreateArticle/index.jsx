@@ -5,7 +5,6 @@ import Banner from './../Banner';
 const CreateArticle = () => {
   return (
     <div>
-      {/* Header */}
       <Banner 
         backgroundImage={`url(${process.env.PUBLIC_URL}/assets/img/bg-laptop.jpg)`}
         title="Write an article"

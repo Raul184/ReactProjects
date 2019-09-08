@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 const Navbar = ({authUser}) => {
   return (
@@ -26,7 +28,7 @@ const Navbar = ({authUser}) => {
               </a>
               <div className="nav-submenu">
                 <a className="nav-link" href="page-login.html">My articles</a>
-                <a className="nav-link" href>Logout</a>
+                <a className="nav-link" >Logout</a>
               </div>
             </li>
             {
@@ -45,5 +47,20 @@ const Navbar = ({authUser}) => {
     </nav>
   );
 };
+
+//Default props
+Navbar.defaultProps = {
+  authUser: null
+}
+
+//PROP TYPES
+
+Navbar.Proptypes = {
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
+  })
+}
 
 export default Navbar;

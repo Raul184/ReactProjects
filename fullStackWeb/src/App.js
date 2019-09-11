@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 //routing
 import { Switch, Route } from 'react-router-dom';
 //Components
-import Login from './components/Login/Login';
+import Login from './components/Login/Login.js';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup/SignUp';
 import Footer from './components/Footer';
 import Welcome from './components/Welcome';
 import SingleArticle from './components/SingleArticle';
-import CreateArticle from './components/CreateArticle';
+import CreateArticle from './components/CreateArticle/CreateArticle';
 import PropTypes from 'prop-types';
 
 //Adding state to Main comp.
@@ -20,12 +20,12 @@ export default class App extends Component {
   componentDidMount() {
     //user logged ?
     const user = localStorage.getItem( 'user' );
-
-    if ( user ) {
+    console.log(user);
+    if ( user !== null ) {
       //Single Source of Truth for Main Components
-      this.setState( {
+      this.setState({
         authUser: JSON.parse(user)
-      })
+      });
     }
   }
 
@@ -33,6 +33,9 @@ export default class App extends Component {
   setAuthUser = (authUser) => {
     this.setState( {
       authUser
+    }, () => {
+        localStorage.setItem('user', JSON.stringify(authUser));
+        this.props.history.push('/');
     });
     console.log(this.state.authUser);
   }
@@ -86,6 +89,9 @@ export default class App extends Component {
 App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
   }).isRequired,
   autentication: PropTypes.objectOf(PropTypes.func).isRequired, 
 }

@@ -1,5 +1,6 @@
 import React, { Component , Fragment} from 'react';
 import LoginForm from './LoginForm/LoginForm';
+import PropTypes from 'prop-types';
 
 export default class Login extends Component {
   state = {
@@ -18,14 +19,18 @@ export default class Login extends Component {
   //Submit
   handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      const res = await this.props.login(this.state);
+      const user = await this.props.login(this.state);
       //local session
-      localStorage.setItem( 'user', JSON.stringify( res) );
+      if (user) {
+        console.log(user);
+      // localStorage.setItem('user', JSON.stringify(user) );
       //Awareness of Authenticated user in
-      this.props.setAuthUser( res);
+      this.props.setAuthUser(user);
       //Redirect auth User
-      this.props.history.push( '/' );
+      // this.props.history.push( '/' );  
+      }
     }
     catch (errors) {
       this.setState({errors})
@@ -34,8 +39,17 @@ export default class Login extends Component {
   render() {
     return (
       <Fragment>
-        <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} errors={this.state.errors}/>
       </Fragment>
     )
   }
+}
+
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  setAuthUser: PropTypes.func.isRequired,
+  // history: PropTypes.shape({
+    // push: PropTypes.func.isRequired
+  // }).isRequired,
 }

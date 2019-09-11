@@ -1,8 +1,9 @@
 import React , {Component} from 'react';
 //FOrm
 import Form from "./SignUpForm";
+import PropTypes from 'prop-types';
 
-export default class index extends Component {
+export default class SignUp extends Component {
     state = {
       name: '',
       email: '',
@@ -27,11 +28,11 @@ export default class index extends Component {
       //Imported Service
       const response = await this.props.registerUser( data );
       //local session
-      localStorage.setItem( 'user', JSON.stringify( response) );
+      // localStorage.setItem( 'user', JSON.stringify( response) );
       //Awareness of Authenticated user in
       this.props.setAuthUser( response);
       //Redirect auth User
-      this.props.history.push( '/' );
+      // this.props.history.push( '/' );
     }
     catch ( errors ) {
       this.setState( {
@@ -49,4 +50,12 @@ export default class index extends Component {
       />
     )
   }
+}
+
+SignUp.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  setAuthUser: PropTypes.func.isRequired,
+  // history: PropTypes.shape({
+  //   push: PropTypes.func.isRequired
+  // }).isRequired,
 }

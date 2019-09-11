@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const LoginForm = ({ handleChange, handleSubmit }) => {
+const LoginForm = ({ handleChange, handleSubmit , errors}) => {
   return (
     <div className="mh-fullscreen bg-img center-vh p-20" style={{ backgroundImage: 'url(assets/img/bg-girl.jpg)' }}>
       <div className="card card-shadowed p-50 w-400 mb-0" style={{ maxWidth: '100%' }}>
@@ -18,6 +18,9 @@ const LoginForm = ({ handleChange, handleSubmit }) => {
               name="email"
               onChange={handleChange}
             />
+            {errors.email &&
+                <small className="text-danger">{errors[ 'email' ]}</small>
+              }
           </div>
           <div className="form-group">
             <input
@@ -27,6 +30,9 @@ const LoginForm = ({ handleChange, handleSubmit }) => {
               name="password"
               onChange={handleChange}
             />
+            {errors.password &&
+                <small className="text-danger">{errors[ 'password' ]}</small>
+              }
           </div>
           <div className="form-group flexbox py-10">
             <label className="custom-control custom-checkbox">
@@ -51,7 +57,8 @@ const LoginForm = ({ handleChange, handleSubmit }) => {
 
 LoginForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  error: PropTypes.objectOf(PropTypes.string).isRequired
 }
 
 export default LoginForm;

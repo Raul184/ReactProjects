@@ -37,9 +37,9 @@ export default class AuthService {
     }
     catch ( errors ) {
       const formatErrors = {};
-      
+      console.log('Auth.js ' , errors)
       // 1 SERVER ERROR
-      if ( errors.status === 422 )
+      if ( errors.response && errors.status === 422 )
       { 
         //Server's only response with 'email' errors
         formatErrors[ 'email' ] = errors.response.data[ 'email' ][ 0 ];
@@ -64,7 +64,7 @@ export default class AuthService {
     }
     //messages to display
     const messages = {
-      required: 'Sorry, this file is required',
+      required: 'Sorry, this field is required',
       'email.required' : "Invalid email address"
     }
 
@@ -79,9 +79,9 @@ export default class AuthService {
     catch (errors)
     {
       const formatErrors = {};
-      
+      console.log('Auth.js ' , errors)
       // 1 SERVER ERROR
-      if ( errors.response.status === 401 ) //unauthorized
+      if ( errors.response && errors.response.status === 401 ) //unauthorized
       { 
         //Server's only response with 'email' errors
         formatErrors[ 'email' ] = 'Invalid credentials';

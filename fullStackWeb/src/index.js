@@ -6,7 +6,7 @@ import App from './App';
 import AuthService from './services/auth';
 
 
-//High Order Comp.  ++ Routing added to footer && Nav
+//High Order Comp.  ++ Routing props enhancement
 const Main = withRouter(
   props =>
     <App

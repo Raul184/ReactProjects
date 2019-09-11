@@ -1,5 +1,5 @@
 import React, { Component , Fragment } from 'react'
-import ArticleForm from './CreateArticleForm/index';
+import ArticleForm from './CreateArticleForm/CreateArticleForm';
 
 
 export default class CreateArticle extends Component {
@@ -7,10 +7,18 @@ export default class CreateArticle extends Component {
     title: '',
     image: null,
     content: '',
-    channel: null,
-    errors: {}
+    category: null,
+    errors: {},
+    categories: []
   };
 
+  async componentWillMount() {
+    const req = await this.props.articleService();
+    console.log(req.data.categories);
+    this.setState({
+      categories: req.data.categories
+    });
+  }
   //on Change 
   handleChange = (e) => {
 
@@ -20,9 +28,13 @@ export default class CreateArticle extends Component {
   }
 
   render() {
+    const { categories } = this.state;
     return (
       <Fragment>
-        <ArticleForm onChang={this.handleChange} />
+        <ArticleForm
+          onChang={this.handleChange}
+          categories={categories}
+        />
       </Fragment>
     )
   }

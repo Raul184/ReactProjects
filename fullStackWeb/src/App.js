@@ -41,7 +41,7 @@ export default class App extends Component {
   }
   
   render() {
-    const { location , autentication} = this.props;
+    const { location , autentication , articleService} = this.props;
     const { authUser , setAuthUser} = this.state
     return (
       <div>
@@ -73,7 +73,14 @@ export default class App extends Component {
           }
         />
         <Route path="/article/:slug" component={SingleArticle} />
-        <Route path="/articles/create" component={CreateArticle} />
+        <Route path="/articles/create" 
+          render={ (props) => 
+            <CreateArticle
+              {...props}
+              articleService={articleService.getCategories}
+            />
+          }
+        />
       </Switch>
       {
         location.pathname !== '/login' &&

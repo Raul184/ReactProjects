@@ -4,7 +4,7 @@ import Banner from '../../Banner';
 import PropTypes from 'prop-types';
 
 
-const CreateArticle = ({onChang}) => {
+const CreateArticleForm = ({onChang ,categories}) => {
   return (
     <div>
       <Banner 
@@ -27,10 +27,12 @@ const CreateArticle = ({onChang}) => {
                       <input className="form-control form-control-lg" type="text" onChange={onChang} name="name" placeholder="Title" />
                     </div>
                     <div className="form-group col-12 col-md-6">
-                      <select name="channel" onChange={onChang} className="form-control form-control-lg">
+                      <select name="category" onChange={onChang} className="form-control form-control-lg">
                         <option value>Select category</option>
-                        <option value>Vuejs</option>
-                        <option value>Reactjs</option>
+                        {
+                          categories.map(item =>
+                            <option key={item.id} value={item.id}>{item.name}</option>)
+                        } 
                       </select>
                     </div>
                   </div>
@@ -56,9 +58,9 @@ const CreateArticle = ({onChang}) => {
   );
 };
 
-CreateArticle.propTypes = {
+CreateArticleForm.propTypes = {
   onChang: PropTypes.func.isRequired,
 }
 
 
-export default CreateArticle;
+export default CreateArticleForm;

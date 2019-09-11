@@ -1,18 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Login = () => {
+
+const LoginForm = ({ handleChange, handleSubmit }) => {
   return (
     <div className="mh-fullscreen bg-img center-vh p-20" style={{ backgroundImage: 'url(assets/img/bg-girl.jpg)' }}>
       <div className="card card-shadowed p-50 w-400 mb-0" style={{ maxWidth: '100%' }}>
         <h5 className="text-uppercase text-center">Login</h5>
         <br />
         <br />
-        <form>
+        <form onSubmit={handleSubmit} onKeyPress={(e) => e.key === 'Enter' && handleSubmit}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Username" />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="mail"
+              name="email"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
-            <input type="password" className="form-control" placeholder="Password" />
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group flexbox py-10">
             <label className="custom-control custom-checkbox">
@@ -28,11 +42,16 @@ const Login = () => {
         </form>
         <hr className="w-30" />
         <p className="text-center text-muted fs-13 mt-20">Don't have an account?
-          <a href="register.html">Sign up</a>
+          <a href="register.html"> Sign up</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default Login;
+LoginForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
+}
+
+export default LoginForm;

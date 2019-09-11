@@ -7,9 +7,9 @@ import config from '../config';
 
 
 export default class AuthService {
+  //Sign UP User =================================
   async registerUser( data ) {
     //Validations
-    // const data = this.state;
     //rules to apply
     const rules = {
       name: 'required|string',
@@ -50,6 +50,47 @@ export default class AuthService {
       errors.forEach( error => formatErrors[ error.field ] = error.message );
       //Stock erros in State
       
+      return Promise.reject( formatErrors );
+    }
+  }
+
+  //Log In User =================================
+  async login(data) {
+     //Validations
+    //rules to apply
+    const rules = {
+      email: 'required|email',
+      password: 'required|string'
+    }
+    //messages to display
+    const messages = {
+      required: 'Sorry, this file is required',
+      'email.required' : "Invalid email address"
+    }
+
+    try {
+      await validateAll(data, rules, messages);
+      //req
+      const req = await axios.post(`${ config.apiUrl }/auth/login`, {
+        email: data.email,
+        password: data.password
+      } );
+    }
+    catch (errors)
+    {
+      const formatErrors = {};
+      
+      // 1 SERVER ERROR
+      if ( errors.response.status === 401 ) //unauthorized
+      { 
+        //Server's only response with 'email' errors
+        formatErrors[ 'email' ] = 'Invalid credentials';
+        return Promise.reject( formatErrors ); 
+      }
+      // 2 VALIDATE ERROR
+      errors.forEach( error => formatErrors[ error.field ] = error.message );
+      
+      //Stock erros in State
       return Promise.reject( formatErrors );
     }
   }

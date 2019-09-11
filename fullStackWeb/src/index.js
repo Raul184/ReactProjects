@@ -7,8 +7,13 @@ import AuthService from './services/auth';
 
 
 //High Order Comp.  ++ Routing added to footer && Nav
-const Main = withRouter( props  => <App autentication={new AuthService()} {...props} />);  
-
+const Main = withRouter(
+  props =>
+    <App
+      autentication={new AuthService()}
+      {...props}
+    />
+);  
 
 
 //RENDER APP

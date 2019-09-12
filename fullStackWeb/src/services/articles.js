@@ -6,11 +6,19 @@ import config from '../config/index';
 import { validateAll } from 'indicative/validator'
 
 export default class articles extends Component {
-  //Get Categories
+
+  //Get Categories for Select on Create Article page
   async getCategories() {
     const req = axios.get(`${ config.apiUrl }/categories`);
     return req;
   }
+
+  async getSingleArt(slug) {
+    const req = await axios.get(`${ config.apiUrl }/article/${ slug }`);
+    return req.data.data;
+  }
+
+  //Create Article SECTION ====================
 
   //Get Articles
   async getArticles(url=`${ config.apiUrl }/articles`) {
@@ -18,7 +26,7 @@ export default class articles extends Component {
     return req.data.data;
   }
 
-  //Upload/Create Article
+  //Upload Img   
   createArticle = async (data, token) => {
     if (!data.image) return Promise.reject([
       { message: "Sorry bro, an image is required"}

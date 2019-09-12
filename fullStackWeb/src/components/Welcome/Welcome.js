@@ -7,10 +7,9 @@ export default class Welcome extends Component {
     articles: null
   }
 
-  //WIllMount
+  //WillMount
   async componentWillMount() {
     const allArticles = await this.props.getArticles();
-    console.log(allArticles);
 
     this.setState({
       articles: allArticles.data,
@@ -22,7 +21,6 @@ export default class Welcome extends Component {
   //Pagination
   handlePagination = async (url) => {
     const allArticles = await this.props.getArticles(url);
-    console.log('Pagination', allArticles);
     
     this.setState({
       articles: allArticles.data,

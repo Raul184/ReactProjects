@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Signup from './components/Signup/SignUp';
 import Footer from './components/Footer';
 import Welcome from './components/Welcome/Welcome';
-import SingleArticle from './components/SingleArticle/SingleArticle';
+import SingleArticle from './components/SingleArticle/SingleArticleState';
 import CreateArticle from './components/CreateArticle/CreateArticle';
 import PropTypes from 'prop-types';
 
@@ -68,17 +68,25 @@ export default class App extends Component {
         />
         {/* SIGN UP USER */}
         <Route path="/signup"
-          render={ ( props ) =>
+          render={ props =>
             <Signup
               {...props}
               setAuthUser={this.setAuthUser}
               registerUser={autentication.registerUser}
             />
           }
+          />
+          {/* SINGLE ARTICLE PAGE */}
+        <Route path="/article/:slug" 
+          render={ props => 
+            <SingleArticle
+              {...props}
+              getSingleArt={articleService.getSingleArt}
+            />
+          }
         />
-        <Route path="/article/:slug" component={SingleArticle} />
         <Route path="/articles/create" 
-          render={ (props) => 
+          render={ props => 
             <CreateArticle
               {...props}
               articleCategories={articleService.getCategories}

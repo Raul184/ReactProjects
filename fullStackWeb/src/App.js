@@ -6,8 +6,8 @@ import Login from './components/Login/Login.js';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup/SignUp';
 import Footer from './components/Footer';
-import Welcome from './components/Welcome';
-import SingleArticle from './components/SingleArticle';
+import Welcome from './components/Welcome/Welcome';
+import SingleArticle from './components/SingleArticle/SingleArticle';
 import CreateArticle from './components/CreateArticle/CreateArticle';
 import PropTypes from 'prop-types';
 
@@ -51,16 +51,20 @@ export default class App extends Component {
       }
       <Switch>  
         {/* HOME */}
-        <Route exact path="/" component={Welcome} />
+        <Route exact path="/" 
+          render={
+            (props) => <Welcome {...props} getArticles={articleService.getArticles}/>
+          }
+        />
         {/* LOGIN */}
         <Route path="/login" 
-            render={(props) => 
-              <Login
-                {...props}
-                setAuthUser={setAuthUser}
-                login={autentication.login}
-              />
-            }
+          render={(props) => 
+            <Login
+              {...props}
+              setAuthUser={setAuthUser}
+              login={autentication.login}
+            />
+          }
         />
         {/* SIGN UP USER */}
         <Route path="/signup"
@@ -77,7 +81,9 @@ export default class App extends Component {
           render={ (props) => 
             <CreateArticle
               {...props}
-              articleService={articleService.getCategories}
+              articleCategories={articleService.getCategories}
+              createArticle={articleService.createArticle}
+              authUser={authUser.token && authUser.token} 
             />
           }
         />

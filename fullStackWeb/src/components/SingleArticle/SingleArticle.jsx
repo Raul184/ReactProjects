@@ -98,10 +98,10 @@ const SingleArticle = () => {
                   whereas diverse meta-services. Continually orchestrate ubiquitous core competencies rather than market positioning
               "outside the box" thinking. Dramatically redefine out-of-the-box schemas.</p>
                 <div className="gap-multiline-items-1 mt-30">
-                  <Link className="badge badge-pill badge-default">Record</Link>
-                  <Link className="badge badge-pill badge-default">Progress</Link>
-                  <Link className="badge badge-pill badge-default">Customers</Link>
-                  <Link className="badge badge-pill badge-default">News</Link>
+                  <Link className="badge badge-pill badge-default" to='/'>Record</Link>
+                  <Link className="badge badge-pill badge-default" to='/'>Progress</Link>
+                  <Link className="badge badge-pill badge-default" to='/'>Customers</Link>
+                  <Link className="badge badge-pill badge-default" to='/'>News</Link>
                 </div>
               </div>
             </div>

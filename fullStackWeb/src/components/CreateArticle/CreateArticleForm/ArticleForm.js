@@ -4,7 +4,7 @@ import Banner from '../../Banner';
 import PropTypes from 'prop-types';
 
 
-const CreateArticleForm = ({onChang ,categories}) => {
+const ArticleForm = ({onChang ,categories , handleSubmit , errors}) => {
   return (
     <div>
       <Banner 
@@ -18,13 +18,18 @@ const CreateArticleForm = ({onChang ,categories}) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-12">
-                <form className="p-30 bg-gray rounded" method="POST" data-form="mailer">
+                {errors[ 0 ] ?
+                  <li className="list-group-item text-danger">{errors[ 0 ][ "message" ]}</li>    
+                  :
+                  null
+                }
+                <form className="p-30 bg-gray rounded" method="POST" data-form="mailer" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="form-group col-md-12 my-5">
-                      <input type="file" className="form-control" onChange={onChang} name="image"/>
+                      <input type="file" className="form-control" onChange={onChang} name="image" />
                     </div>
                     <div className="form-group col-12 col-md-6">
-                      <input className="form-control form-control-lg" type="text" onChange={onChang} name="name" placeholder="Title" />
+                      <input className="form-control form-control-lg" type="text" onChange={onChang} name="title" placeholder="Title" />
                     </div>
                     <div className="form-group col-12 col-md-6">
                       <select name="category" onChange={onChang} className="form-control form-control-lg">
@@ -58,9 +63,9 @@ const CreateArticleForm = ({onChang ,categories}) => {
   );
 };
 
-CreateArticleForm.propTypes = {
+ArticleForm.propTypes = {
   onChang: PropTypes.func.isRequired,
 }
 
 
-export default CreateArticleForm;
+export default ArticleForm;

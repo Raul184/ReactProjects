@@ -10,7 +10,6 @@ export default class AuthService {
   //Sign UP User =================================
   async registerUser( data ) {
     //Validations
-    //rules to apply
     const rules = {
       name: 'required|string',
       email: 'required|email',

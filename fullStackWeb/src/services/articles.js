@@ -13,9 +13,9 @@ export default class articles extends Component {
   }
 
   //Get Articles
-  async getArticles() {
-    const req = await axios.get(`${ config.apiUrl }/articles`);
-    return req.data.data.data;
+  async getArticles(url=`${ config.apiUrl }/articles`) {
+    const req = await axios.get(url);
+    return req.data.data;
   }
 
   //Upload/Create Article

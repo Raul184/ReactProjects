@@ -11,12 +11,27 @@ export default class Welcome extends Component {
   async componentWillMount() {
     const allArticles = await this.props.getArticles();
     console.log(allArticles);
+
     this.setState({
-      articles: allArticles
+      articles: allArticles.data,
+      nextUrl: allArticles.next_page_url,
+      prevUrl: allArticles.prev_page_url
+    });
+  }
+
+  //Pagination
+  handlePagination = async (url) => {
+    const allArticles = await this.props.getArticles(url);
+    console.log('Pagination', allArticles);
+    
+    this.setState({
+      articles: allArticles.data,
+      nextUrl: allArticles.next_page_url,
+      prevUrl: allArticles.prev_page_url
     });
   }
   render() {
-    const { articles } = this.state;
+    const { articles  , nextUrl , prevUrl} = this.state;
     return (
       <Fragment>
       <Banner
@@ -29,17 +44,25 @@ export default class Welcome extends Component {
           <div className="col-12 col-lg-6 offset-lg-3">
             {
               articles && articles.map( art => 
-                <Article key={art.id} title={art.title} content={art.content} pic={art.imageUrl} category={art.category_id}
+                <Article
+                  key={art.id}
+                  title={art.title}
+                  content={art.content}
+                  pic={art.imageUrl}
+                  category={art.category_id}
                   slug={art.slug} time={art.created_at}
                 />
               )
             }
             <nav className="flexbox mt-50 mb-50">
-              <a className="btn btn-white disabled">
-                <i className="ti-arrow-left fs-9 mr-4" /> Newer</a>
-              <a className="btn btn-white">Older
-                <i className="ti-arrow-right fs-9 ml-4" />
-              </a>
+              <button className={`btn btn-white ${prevUrl ? '' : "disabled"}`} onClick={() => this.handlePagination(prevUrl)}>
+                <i className="ti-arrow-left fs-9 mr-4"/>
+                Older
+              </button>
+              <button className="btn btn-white" onClick={() => this.handlePagination(nextUrl)}>
+                Newer
+                <i className="ti-arrow-right fs-9 ml-4"/>
+              </button>
             </nav>
           </div>
         </div>

@@ -6,7 +6,7 @@ const Article = ({title , content , pic , slug , time}) => {
     <article className="mt-90">
       <header className="text-center mb-40">
         <h3>
-          <a href="blog-single.html">{title}</a>
+          <Link to={`article/${slug}`}>{title}</Link>
         </h3>
         <div className="link-color-default fs-12">
           <a>News</a>,
@@ -17,13 +17,13 @@ const Article = ({title , content , pic , slug , time}) => {
         <img className="rounded" src={pic} alt="..." />
       </a>
       <div className="card-block">
-        <p className="text-justify">{content}</p>
+        <p className="text-justify">{`${content.substring(0 , 200)}`}</p>
         <p className="text-center mt-40">
           <Link className="btn btn-primary btn-round" to={`/article/${slug}`}>Read more</Link>
         </p>
       </div>
     </article>
   );
-};
+}; 
 
 export default Article;

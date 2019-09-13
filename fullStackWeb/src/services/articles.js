@@ -9,7 +9,13 @@ export default class articles extends Component {
 
   //Get Categories for Select on Create Article page
   async getCategories() {
+
+    const categories = JSON.parse(localStorage.getItem('categories'));
+    if (categories) return categories;
+
     const req = axios.get(`${ config.apiUrl }/categories`);
+    //cache purposes
+    localStorage.setItem('categories', JSON.stringify(req.data.categories));
     return req;
   }
 

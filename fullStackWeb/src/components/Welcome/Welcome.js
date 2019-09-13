@@ -21,12 +21,13 @@ export default class Welcome extends Component {
   //Pagination
   handlePagination = async (url) => {
     const allArticles = await this.props.getArticles(url);
-    
     this.setState({
       articles: allArticles.data,
       nextUrl: allArticles.next_page_url,
       prevUrl: allArticles.prev_page_url
     });
+    //Set Articles from api for every click on pagination
+    this.props.displayArtc(allArticles.data);
   }
   render() {
     const { articles  , nextUrl , prevUrl} = this.state;

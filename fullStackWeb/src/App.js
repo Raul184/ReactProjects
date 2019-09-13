@@ -14,7 +14,8 @@ import PropTypes from 'prop-types';
 //Adding state to Main comp.
 export default class App extends Component {
     state = {
-      authUser: null
+      authUser: null,
+      articlesDisplayed: []
     }  
   
   componentDidMount() {
@@ -40,9 +41,14 @@ export default class App extends Component {
     console.log(this.state.authUser);
   }
   
+  setArtcDisplay = (articles) => {
+    this.setState({
+      articlesDisplayed: articles
+    });
+  }
   render() {
     const { location , autentication , articleService} = this.props;
-    const { authUser , setAuthUser} = this.state
+    const { authUser , setAuthUser , articlesDisplayed} = this.state
     return (
       <div>
       {
@@ -53,7 +59,7 @@ export default class App extends Component {
         {/* HOME */}
         <Route exact path="/" 
           render={
-            (props) => <Welcome {...props} getArticles={articleService.getArticles}/>
+            (props) => <Welcome {...props} getArticles={articleService.getArticles} displayArtc={this.setArtcDisplay}/>
           }
         />
         {/* LOGIN */}
@@ -82,6 +88,7 @@ export default class App extends Component {
             <SingleArticle
               {...props}
               getSingleArt={articleService.getSingleArt}
+              articles={articlesDisplayed}
             />
           }
         />

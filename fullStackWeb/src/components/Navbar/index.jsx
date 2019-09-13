@@ -17,7 +17,7 @@ const Navbar = ({authUser}) => {
         <div className="topbar-right">
           <ul className="topbar-nav nav">
             <li className="nav-item">
-              <a className="nav-link" href="index.html">Home</a>
+              <Link to='/' className="nav-link">Home</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/articles/create">Write new article</Link>
@@ -27,7 +27,7 @@ const Navbar = ({authUser}) => {
               <i className="fa fa-caret-down" />
               </a>
               <div className="nav-submenu">
-                <a className="nav-link" href="page-login.html">My articles</a>
+               <Link className="nav-link" >My articles</Link>
                 <a className="nav-link" >Logout</a>
               </div>
             </li>

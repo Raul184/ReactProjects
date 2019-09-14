@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-const Navbar = ({authUser}) => {
+const Nav = ({authUser}) => {
   return (
     <nav className="topbar topbar-inverse topbar-expand-md topbar-sticky">
       <div className="container">
@@ -19,18 +19,22 @@ const Navbar = ({authUser}) => {
             <li className="nav-item">
               <Link to='/' className="nav-link">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/articles/create">Write new article</Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Hey {authUser && authUser.user.name}!
-              <i className="fa fa-caret-down" />
-              </a>
-              <div className="nav-submenu">
-               <Link className="nav-link" >My articles</Link>
-                <a className="nav-link" >Logout</a>
-              </div>
-            </li>
+            {
+              authUser && <li className="nav-item">
+                <Link className="nav-link" to="/articles/create">Write new article</Link>
+              </li>
+            }
+            {
+              authUser && <li className="nav-item">
+                <a className="nav-link">Hey {authUser && authUser.user.name}!
+                <i className="fa fa-caret-down" />
+                </a>
+                <div className="nav-submenu">
+                  <Link className="nav-link" to='/'>My articles</Link>
+                  <a className="nav-link" >Logout</a>
+                </div>
+              </li>
+            }
             {
               !authUser && <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
@@ -49,13 +53,13 @@ const Navbar = ({authUser}) => {
 };
 
 //Default props
-Navbar.defaultProps = {
+Nav.defaultProps = {
   authUser: null
 }
 
 //PROP TYPES
 
-Navbar.Proptypes = {
+Nav.Proptypes = {
   authUser: PropTypes.shape({
     user: PropTypes.shape({
       name: PropTypes.string,
@@ -63,4 +67,4 @@ Navbar.Proptypes = {
   })
 }
 
-export default Navbar;
+export default Nav;

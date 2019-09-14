@@ -3,14 +3,16 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom';
 //Components
 import Login from './components/Login/Login.js';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Nav';
 import Signup from './components/Signup/SignUp';
 import Footer from './components/Footer';
 import Welcome from './components/Welcome/Welcome';
 import SingleArticle from './components/SingleArticle/SingleArticleState';
 import CreateArticle from './components/CreateArticle/CreateArticle';
 import PropTypes from 'prop-types';
-
+//Authentications on Routing
+import Auth from './components/Auth/Auth';
+import RedirectAuth from './components/Auth/RedirectAuth';
 //Adding state to Main comp.
 export default class App extends Component {
     state = {
@@ -81,8 +83,8 @@ export default class App extends Component {
               registerUser={autentication.registerUser}
             />
           }
-          />
-          {/* SINGLE ARTICLE PAGE */}
+        />
+        {/* SINGLE ARTICLE PAGE */}
         <Route path="/article/:slug" 
           render={ props => 
             <SingleArticle
@@ -92,7 +94,18 @@ export default class App extends Component {
             />
           }
         />
-        <Route path="/articles/create" 
+        <Auth
+          path="/articles/create"
+          component={CreateArticle}
+          props={{
+            articleCategories:articleService.getCategories ,
+            createArticle:articleService.createArticle ,
+            authUser: authUser ? authUser.token : null 
+          }}
+          isAuthenticated={authUser !==null}
+        /> 
+          {/* CREATE ARTICLE PAGE */}
+        {/* <Route path="/articles/create" 
           render={ props => 
             <CreateArticle
               {...props}
@@ -101,7 +114,7 @@ export default class App extends Component {
               authUser={authUser.token && authUser.token} 
             />
           }
-        />
+        /> */}
       </Switch>
       {
         location.pathname !== '/login' &&

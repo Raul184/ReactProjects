@@ -26,13 +26,9 @@ export default class SignUp extends Component {
 
     try {
       //Imported Service
-      const response = await this.props.registerUser( data );
-      //local session
-      // localStorage.setItem( 'user', JSON.stringify( response) );
-      //Awareness of Authenticated user in
-      this.props.setAuthUser( response);
-      //Redirect auth User
-      // this.props.history.push( '/' );
+      const response = await this.props.registerUser( data );      
+      await this.props.setAuthU( response);
+
     }
     catch ( errors ) {
       this.setState( {

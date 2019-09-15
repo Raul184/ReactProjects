@@ -12,7 +12,7 @@ const Auth = ({ path, props, component: Component , isAuthenticated }) => {
           return <Component {...props} {...routerProps}/>
         }
         return <Redirect to="/login"/>
-      }
+      } 
     }
   />
 }

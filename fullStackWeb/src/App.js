@@ -65,24 +65,24 @@ export default class App extends Component {
           }
         />
         {/* LOGIN */}
-        <Route path="/login" 
-          render={(props) => 
-            <Login
-              {...props}
-              setAuthUser={setAuthUser}
-              login={autentication.login}
-            />
-          }
+        <RedirectAuth 
+          path="/login"
+          component={Login}
+          props={{
+            setAuthUser: setAuthUser ,
+            login :autentication.login
+          }}
+          isAuthenticated={this.state.authUser}
         />
         {/* SIGN UP USER */}
-        <Route path="/signup"
-          render={ props =>
-            <Signup
-              {...props}
-              setAuthUser={this.setAuthUser}
-              registerUser={autentication.registerUser}
-            />
-          }
+        <RedirectAuth 
+          path='/signup'
+          component={Signup}
+          props={{
+            setAuthUser: this.setAuthUser,
+            registerUser:autentication.registerUser
+          }}
+          isAuthenticated={this.state.authUser !== null}
         />
         {/* SINGLE ARTICLE PAGE */}
         <Route path="/article/:slug" 
@@ -104,17 +104,6 @@ export default class App extends Component {
           }}
           isAuthenticated={authUser !==null}
         /> 
-          {/* CREATE ARTICLE PAGE */}
-        {/* <Route path="/articles/create" 
-          render={ props => 
-            <CreateArticle
-              {...props}
-              articleCategories={articleService.getCategories}
-              createArticle={articleService.createArticle}
-              authUser={authUser.token && authUser.token} 
-            />
-          }
-        /> */}
       </Switch>
       {
         location.pathname !== '/login' &&

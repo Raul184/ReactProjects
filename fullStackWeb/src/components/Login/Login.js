@@ -19,21 +19,23 @@ export default class Login extends Component {
   //Submit
   handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
       const user = await this.props.login(this.state);
       //local session
       if (user) {
-        console.log(user);
-      // localStorage.setItem('user', JSON.stringify(user) );
+        console.log('Login component' ,user);
+      localStorage.setItem('user', JSON.stringify(user) );
+      
       //Awareness of Authenticated user in
       this.props.setAuthUser(user);
+      
       //Redirect auth User
-      // this.props.history.push( '/' );  
+      this.props.history.push( '/' );  
       }
     }
     catch (errors) {
-      this.setState({errors})
+      this.setState({ errors })
+      console.log(errors);
     }
   }
   render() {

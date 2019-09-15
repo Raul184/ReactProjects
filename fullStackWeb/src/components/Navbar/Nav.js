@@ -26,7 +26,7 @@ const Nav = ({authUser}) => {
             }
             {
               authUser && <li className="nav-item">
-                <a className="nav-link">Hey {authUser && authUser.user.name}!
+                <a className="nav-link">Hey !
                 <i className="fa fa-caret-down" />
                 </a>
                 <div className="nav-submenu">

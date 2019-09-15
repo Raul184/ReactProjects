@@ -58,7 +58,7 @@ const LoginForm = ({ handleChange, handleSubmit , errors}) => {
 LoginForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.objectOf(PropTypes.string).isRequired
+  error: PropTypes.objectOf(PropTypes.string)
 }
 
 export default LoginForm;

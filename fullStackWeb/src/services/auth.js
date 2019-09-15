@@ -73,7 +73,9 @@ export default class AuthService {
       const req = await axios.post(`${ config.apiUrl }/auth/login`, {
         email: data.email,
         password: data.password
-      } );
+      });
+      return req.data.data;
+        
     }
     catch (errors)
     {

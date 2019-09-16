@@ -12,7 +12,9 @@ export default function MostWatched() {
   )
 }
 
+
 const Wrap = styled.div`
   background: rgba(55 , 71 , 79 , 1);
   color: white;  
-`;
+`
+;

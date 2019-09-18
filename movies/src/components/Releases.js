@@ -13,7 +13,7 @@ export default function Releases({ films }) {
         {
           films.map(mov =>
             <Movie key={mov.id} peli={mov}>
-              {mov.title}
+              <span>{mov.title}</span>
             </Movie>
           )
         }
@@ -45,4 +45,15 @@ const Movie = styled.li`
     return urlImage+props.peli.backdrop_path
   }}) no-repeat;
   background-size: cover;
+  >span{
+    display:none;
+    background: rgba(38, 50, 56, .5);
+    color: yellow;
+    font-size: 22px;
+    transition: all .5s;
+  }&:hover{
+    >span{
+      display: inline-block;
+    }
+  }
 `;

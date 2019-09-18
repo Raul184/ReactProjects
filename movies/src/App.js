@@ -9,7 +9,6 @@ import Details from './pages/MoviesDetails';
 function App() {
   return (
     <div className="App">
-      Hello world
       <Switch>
         <Route exact path='/' render={() => <Home />} />
         <Route exact path='/details' render={() => <Home />} />

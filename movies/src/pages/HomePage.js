@@ -6,14 +6,15 @@ import Releases from '../components/Releases';
 import axios from 'axios';
 //Api
 import {apiUrl} from '../config/config';
-import { mostW } from '../config/config';
+// import { mostW } from '../config/config';
 
 
 export default class HomePage extends Component {
 
   state = {
     movies: [],
-    mostW: []
+    mostW: [],
+    selected: ''
   }
 
   // Get all movies
@@ -22,19 +23,19 @@ export default class HomePage extends Component {
       this.getData();  
     }
   }
-
   // Get Data from Api
   getData = async () => {
     try {
       //All movies sorted out based on release date
       const req = await axios.get(`${ apiUrl }`);
+      //random selection  
+      this.setMovie(req.data.results);
       //Most watched
-      const reqII = await axios.get(`${ mostW }`);
-  
+      // const reqII = await axios.get(`${ mostW }`);
       //check-in state
       this.setState({
         movies: req.data.results,
-        mostW: reqII.data.results
+        // mostW: reqII.data.results
       });
     }
     catch (error) {
@@ -44,10 +45,20 @@ export default class HomePage extends Component {
       console.log('Error on Request:' , error.message);
     }
   }
+
+  //Set Movie Selected
+  setMovie(peliculas){
+    //Random selected Movie
+    const selected = peliculas[ Math.floor(Math.random()*peliculas.length) ];
+    this.setState({
+      selected
+    });
+    console.log('Selected:', selected.title);
+  }
   render() {
     return (
       <div className="HomePage">
-        <MostWatched mostWatched={this.state.mostW} />
+        <MostWatched most={this.state.selected} />
         <Releases films={this.state.movies}/>
       </div>
     )

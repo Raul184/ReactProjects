@@ -6,12 +6,14 @@ import Releases from '../components/Releases';
 import axios from 'axios';
 //Api
 import {apiUrl} from '../config/config';
+import { mostW } from '../config/config';
 
 
 export default class HomePage extends Component {
 
   state = {
-    movies: []
+    movies: [],
+    mostW: []
   }
 
   // Get all movies
@@ -24,11 +26,15 @@ export default class HomePage extends Component {
   // Get Data from Api
   getData = async () => {
     try {
+      //All movies sorted out based on release date
       const req = await axios.get(`${ apiUrl }`);
-      console.log('Va' , req.data.results);
+      //Most watched
+      const reqII = await axios.get(`${ mostW }`);
+  
       //check-in state
       this.setState({
-        movies: req.data.results
+        movies: req.data.results,
+        mostW: reqII.data.results
       });
     }
     catch (error) {
@@ -37,12 +43,11 @@ export default class HomePage extends Component {
       }  
       console.log('Error on Request:' , error.message);
     }
-    
   }
   render() {
     return (
       <div className="HomePage">
-        <MostWatched />
+        <MostWatched mostWatched={this.state.mostW} />
         <Releases films={this.state.movies}/>
       </div>
     )

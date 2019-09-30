@@ -12,8 +12,16 @@ function App() {
     <>
       <Nav />
       <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/details' component={MovieDetails} />
+        <Route exact path='/'
+          render={
+            () => <HomePage />
+          }
+        />
+        <Route exact path='/details/:movieId'
+          render={
+            (routeParams) => <MovieDetails {...routeParams} />
+          }
+        />
       </Switch>
       <Footer />
     </>

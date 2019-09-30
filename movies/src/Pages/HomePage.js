@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 //Comp.
 import Destacados from '../Components/Destacados';
 import Estrenos from '../Components/Estrenos';
+//Api handler
 import axios from 'axios';
+import styled from 'styled-components';
 
 export default class HomePage extends Component {
   static defaultProps = {
@@ -11,13 +13,18 @@ export default class HomePage extends Component {
 
   state = {
     popular: [],
-    releases: []
+    releases: [],
+    random: ""
   }
   //On Mount
   async componentDidMount() {
     try {
     //Get Popular 
-      const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${ this.props.key}&language=en-US&page=1`);
+      const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${ this.props.key }&language=en-US&page=1`);
+      const random = await req.data.results;
+      //Asign random movie
+      this.setRandom(random);
+
     //Get Releases
       const reqII = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${ this.props.key}&language=en-US&page=1`);
       this.setState({
@@ -31,13 +38,30 @@ export default class HomePage extends Component {
       console.log(error.message);
     }
   }
+
+  //Set a Random Movie
+  setRandom(movies) {
+    const random = movies[ Math.floor(Math.random() * movies.length) ];
+    console.log(random)
+    this.setState({ random });
+  }
+
   render() {
     return (
       <>
-        <Destacados pelis={this.state.popular} />
-        <Estrenos pelis={this.state.releases}/>
+        <Destacados pelicula={this.state.random} />
+        <Titulo>Lo mas visto:</Titulo>
+        <Estrenos pelis={this.state.popular} />
+        <Titulo>Proximamente:</Titulo>
+        <Estrenos pelis={this.state.releases} />
       </>
     )
   }
 }
 
+const Titulo = styled.h1`
+  background: rgba(120, 144, 156, 1);
+  color: white;
+  margin: 0;
+  padding: 25px;
+`;

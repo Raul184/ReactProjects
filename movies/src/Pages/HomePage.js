@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 //Comp.
 import Destacados from '../Components/Destacados';
 import Estrenos from '../Components/Estrenos';
+import Titulo from '../Components/Titulo';
 //Api handler
 import axios from 'axios';
-import styled from 'styled-components';
 
 export default class HomePage extends Component {
   static defaultProps = {
@@ -58,10 +58,3 @@ export default class HomePage extends Component {
     )
   }
 }
-
-const Titulo = styled.h1`
-  background: rgba(120, 144, 156, 1);
-  color: white;
-  margin: 0;
-  padding: 25px;
-`;

@@ -6,15 +6,23 @@ const Wrap = styled.div`
   width: 100%;
   height: 75px;
   background: rgba(0, 0, 0, .5);
+  display: flex;
   color: white;
+  justify-content: space-between;
+  align-items: center;
   >h3{
     margin-left: 20px;
   }
 `;
-export default function Header() {
+
+const DateWrap = styled.div`
+  
+`;
+export default function Header({date}) {
   return (
     <Wrap>
       <h3>Titles to change</h3>
+      <DateWrap>{date.toString()}</DateWrap>
     </Wrap>
   )
 }

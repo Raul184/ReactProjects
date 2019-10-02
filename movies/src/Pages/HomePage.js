@@ -5,8 +5,9 @@ import Estrenos from '../Components/Estrenos';
 import Titulo from '../Components/Titulo';
 //Api handler
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   static defaultProps = {
     key: 'c6a037cbccebd275ce5948aa040072fb'
   }
@@ -24,7 +25,7 @@ export default class HomePage extends Component {
       const random = await req.data.results;
       //Asign random movie
       this.setRandom(random);
-
+      console.log(this);
     //Get Releases
       const reqII = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${ this.props.key}&language=en-US&page=1`);
       this.setState({
@@ -58,3 +59,13 @@ export default class HomePage extends Component {
     )
   }
 }
+
+
+//Convertir props de la Store centralizada en propiedas en esta f();
+const mapStateToProps = ({test}) => {
+  return {
+    test
+  }  
+}
+
+export default connect(mapStateToProps)(HomePage);

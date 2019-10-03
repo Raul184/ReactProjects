@@ -22,7 +22,7 @@ export default function Header({date}) {
   return (
     <Wrap>
       <h3>Titles to change</h3>
-      <DateWrap>{date.toString()}</DateWrap>
+      <DateWrap>{date.toLocaleString()}</DateWrap>
     </Wrap>
   )
 }

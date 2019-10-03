@@ -8,12 +8,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore , applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+//Async Middlewares
+import reduxThunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
 //Index for all reducers
 import reducers from './redux/reducers';
 
 //Redux Store
-const store = createStore(reducers, {} , applyMiddleware(logger));
-
+const store = createStore(reducers, {} , applyMiddleware( promise() , reduxThunk , logger ));
 
 ReactDOM.render(
   <Router>

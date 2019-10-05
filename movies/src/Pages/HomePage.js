@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import Destacados from '../Components/Destacados';
 import Estrenos from '../Components/Estrenos';
 import Titulo from '../Components/Titulo';
-//Api handler
-import axios from 'axios';
 import { connect } from 'react-redux';
+//Redux actions
+import { getReleases } from '../redux/actions/moviesActions';
 
 class HomePage extends Component {
   static defaultProps = {
@@ -20,18 +20,7 @@ class HomePage extends Component {
   //On Mount
   async componentDidMount() {
     try {
-    //Get Popular 
-      const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${ this.props.key }&language=en-US&page=1`);
-      const random = await req.data.results;
-      //Asign random movie
-      this.setRandom(random);
-      console.log(this);
-    //Get Releases
-      const reqII = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${ this.props.key}&language=en-US&page=1`);
-      this.setState({
-        popular: req.data.results,
-        releases: reqII.data.results
-      });  
+      this.props.getReleases();
     } catch (error) {
       if (error.state === 422) {
         console.log('Server Error')
@@ -52,20 +41,21 @@ class HomePage extends Component {
       <>
         <Destacados pelicula={this.state.random} />
         <Titulo>Lo mas visto:</Titulo>
-        <Estrenos pelis={this.state.popular} />
+        <Estrenos pelis={this.props.estrenos.data} />
         <Titulo>Proximamente:</Titulo>
-        <Estrenos pelis={this.state.releases} />
+        <Estrenos pelis={this.props.estrenos.data} />
       </>
     )
   }
 }
 
-
-//Convertir props de la Store centralizada en propiedas en esta f();
-const mapStateToProps = ({test}) => {
+//Convertir props de la Store centralizada en propiedas en el deseado Comp.
+const mapStateToProps = ({date , estrenos}) => {
   return {
-    test
+    date , estrenos
   }  
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, {
+  getReleases
+})(HomePage);

@@ -1,7 +1,7 @@
 import tipo from '../actions/types';
 
 const init = {
-  data: []
+  popular: []
 }
 
 
@@ -9,13 +9,11 @@ const init = {
 export default(state = init, action) => {
   switch (action.type)
   {   
-    case tipo._FULFILLED:
+    case tipo._FULFILLEDII:
       const { results } = action.payload.data;
-      const random = results[ Math.floor(Math.random() * results.length) ];
       return Object.assign( {},state,
         {
-          data: results,
-          random
+          popular: results,
         })
     default:
       return state

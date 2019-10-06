@@ -13,11 +13,15 @@ import { Provider } from 'react-redux';
 //Reducers
 import date  from './redux/reducers/root';
 import estrenos from './redux/reducers/estrenos';
+import popular from './redux/reducers/estrenos';
+import creditos from './redux/reducers/creditos';
+import details from './redux/reducers/details';
+
 
 //Redux Store
 const store = createStore(
   combineReducers({
-    date, estrenos
+    date, estrenos , popular , creditos , details
   }),
   {},
   compose(applyMiddleware(promise , reduxThunk , logger))

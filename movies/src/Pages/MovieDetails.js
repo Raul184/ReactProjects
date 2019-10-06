@@ -21,8 +21,6 @@ export default function MovieDetails(props) {
     try {
       const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=c6a037cbccebd275ce5948aa040072fb`);
       const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${id}${credits && "/"+credits}?api_key=c6a037cbccebd275ce5948aa040072fb`);      
-      console.log('Movie:', result);
-      console.log('Credits', movieCredits);
 
       setMovie({
         movie: result.data,

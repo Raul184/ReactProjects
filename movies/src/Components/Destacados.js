@@ -46,7 +46,6 @@ const Loading = styled.div`
   font-size: 25px;
 `;
 export default function Destacados({ pelicula }) {
-  console.log(pelicula)
   if (pelicula) {
     return (
       <Wrap random={pelicula}>

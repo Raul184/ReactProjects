@@ -10,12 +10,10 @@ export default(state = init, action) => {
   switch (action.type)
   {   
     case tipo._FULFILLED:
-      const { results } = action.payload.data;
-      const random = results[ Math.floor(Math.random() * results.length) ];
+      const { data } = action.payload;
       return Object.assign( {},state,
         {
-          data: results,
-          random
+          data
         })
     default:
       return state

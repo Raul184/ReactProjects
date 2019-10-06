@@ -5,6 +5,7 @@ const Wrap = styled.div`
   position: fixed;
   width: 100%;
   height: 75px;
+  padding: 20px;
   background: rgba(0, 0, 0, .5);
   display: flex;
   color: white;

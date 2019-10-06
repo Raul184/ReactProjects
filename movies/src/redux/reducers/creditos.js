@@ -9,11 +9,10 @@ const init = {
 export default(state = init, action) => {
   switch (action.type)
   {   
-    case tipo._FULFILLED:
-      const { cast } = action.payload.data;
+    case tipo.GET_CREDITOS_FULFILLED:
       return Object.assign( {},state,
         {
-          data: cast
+          data: action.payload.data.cast
         })
     default:
       return state

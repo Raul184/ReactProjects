@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
+//comps.
+import Search from './Search';
 
 const Wrap = styled.div`
   position: fixed;
@@ -19,11 +21,12 @@ const Wrap = styled.div`
 const DateWrap = styled.div`
   
 `;
-export default function Header({date}) {
+export default function Nav({date}) {
   return (
     <Wrap>
-      <h3>Titles to change</h3>
-      <DateWrap>{date.toLocaleString()}</DateWrap>
+      <h3>Movie G'o!</h3>
+      <Search />
+      <DateWrap>{date.fecha.toLocaleString()}</DateWrap>
     </Wrap>
   )
 }

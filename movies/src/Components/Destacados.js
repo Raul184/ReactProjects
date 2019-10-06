@@ -51,7 +51,7 @@ export default function Destacados({ pelicula }) {
       <Wrap random={pelicula}>
         <WrapInfo>
           <WrapInfoContent>
-            <Title>{pelicula.title}</Title>
+            <Title>{pelicula.original_title}</Title>
             <Par>{pelicula.overview}</Par>
             <Vote>{pelicula.vote_average}/10</Vote>
           </WrapInfoContent>

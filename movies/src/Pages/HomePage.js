@@ -5,7 +5,7 @@ import Estrenos from '../Components/Estrenos';
 import Titulo from '../Components/Titulo';
 import { connect } from 'react-redux';
 //Redux actions
-import { getReleases} from '../redux/actions/releases';
+import { getEstrenos} from '../redux/actions/estrenos';
 import { getPopular } from '../redux/actions/popular';
 
 
@@ -13,7 +13,7 @@ class HomePage extends Component {
 
   async componentDidMount() {
     try {
-      this.props.getReleases();
+      this.props.getEstrenos();
       this.props.getPopular();
     } catch (error) {
       if (error.state === 422) {
@@ -30,20 +30,21 @@ class HomePage extends Component {
         <Titulo>Lo mas visto:</Titulo>
         <Estrenos pelis={this.props.estrenos.data} />
         <Titulo>Proximamente:</Titulo>
-        <Estrenos pelis={this.props.popular.data} />
+        <Estrenos pelis={this.props.popular.dataII} />
       </>
     )
   }
 }
 
 //Convertir props de la Store centralizada en propiedades.
-const mapStateToProps = ({date , estrenos , popular}) => {
+const mapStateToProps = ({estrenos , popular}) => {
   return {
-    date , estrenos , popular
+    popular,
+    estrenos
   }  
 }
 
 export default connect(mapStateToProps, {
-  getReleases,
+  getEstrenos,
   getPopular
 })(HomePage);

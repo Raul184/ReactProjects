@@ -6,20 +6,20 @@ import HomePage from './Pages/HomePage';
 import MovieDetails from './Pages/MovieDetails';
 import Nav from './Components/Nav';
 import Footer from './Components/Footer';
-import { updateDate } from './redux/actions/fecha';
+import { getFecha } from './redux/actions/fecha';
 //Redux 'bridge'
 import { connect } from 'react-redux';
 
 class App extends React.Component {
   componentDidMount() {
     setInterval(() => {
-      this.props.updateDate()
+      this.props.getFecha()
     }, 1000);
   }
   render() {
     return (
       <>
-        <Nav date={this.props.date.fecha} />
+        <Nav date={this.props.fecha} />
         <Router>
           <Switch>
             <Route exact path='/'
@@ -41,10 +41,10 @@ class App extends React.Component {
 }
 
 
-function mapStateToProps({ date }){
-  return { date }
+function mapStateToProps({ fecha }){
+  return { fecha }
 }
 
 export default connect(mapStateToProps, {
-  updateDate
+  getFecha
 }) (App);

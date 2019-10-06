@@ -1,9 +1,9 @@
 import Types from './types';
 
 //Real Time Date
-export const updateDate = () => {
+export const getFecha = () => {
   return {
-    type: Types.UPDATE_DATE,
+    type: Types.GET_FECHA,
     payload: new Date()
   }
 }

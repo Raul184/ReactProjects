@@ -4,16 +4,14 @@ const init = {
   data: []
 }
 
-
 // Root Reducer (Dispatch store)
 export default(state = init, action) => {
   switch (action.type)
   {   
-    case tipo._FULFILLED:
-      const { data } = action.payload;
+    case tipo.GET_DETALLES_FULFILLED:
       return Object.assign( {},state,
         {
-          data
+          data: action.payload.data
         })
     default:
       return state

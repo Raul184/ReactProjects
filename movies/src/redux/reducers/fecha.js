@@ -8,7 +8,7 @@ const init = {
 export default(state = init, action) => {
   switch (action.type) {
     // DATE && TIME
-    case (Types.UPDATE_DATE):
+    case (Types.GET_FECHA):
       return Object.assign({}, state, {
         fecha: action.payload
       });

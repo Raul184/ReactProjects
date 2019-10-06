@@ -4,11 +4,10 @@ import axios from 'axios';
 const url = "https://api.themoviedb.org/3/movie/";
 const key = 'c6a037cbccebd275ce5948aa040072fb'
 
-
-export const getCredits = (id) => dispatch => {
+//Get released Movies
+export const getBusqueda = (str) => dispatch => {
   dispatch({
-      type: Types.GET_CREDITOS,   
-      payload: axios.get(`${ url }${id}/credits?api_key=${key}&language=es`)
+      type: Types.GET_BUSQUEDA,   
+      payload: axios.get(`${ url }/search/movie?query=${str}api_key=${key}&language=es`)
   }) 
 } 
-      

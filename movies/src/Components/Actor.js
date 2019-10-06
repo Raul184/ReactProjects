@@ -19,13 +19,11 @@ const Name = styled.span`
 
 export default function Actor({ actor }) {
   let urlImage = "https://image.tmdb.org/t/p/w185";
+  console.log(actor);
   return (
     <Wrap>
       <Pic
-        src={actor.profile_path ?
-          `${ urlImage }${ actor.profile_path }` :
-          "http://dummyimage.com/185&text=No Image to display"
-        }
+        src={`${urlImage}${actor.profile_path}`}
       ></Pic>
       <Name>{actor.name}</Name>
     </Wrap>

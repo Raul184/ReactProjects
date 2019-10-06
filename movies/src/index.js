@@ -11,17 +11,22 @@ import promise from 'redux-promise-middleware';
 import { Provider } from 'react-redux';
 //Index for all reducers
 //Reducers
-import date  from './redux/reducers/root';
+import fecha  from './redux/reducers/fecha';
 import estrenos from './redux/reducers/estrenos';
-import popular from './redux/reducers/estrenos';
+import popular from './redux/reducers/popular';
 import creditos from './redux/reducers/creditos';
-import details from './redux/reducers/details';
-
+import detalles from './redux/reducers/detalles';
+import search from './redux/reducers/search'; 
 
 //Redux Store
 const store = createStore(
   combineReducers({
-    date, estrenos , popular , creditos , details
+    fecha,
+    estrenos,
+    popular,
+    creditos,
+    detalles,
+    search
   }),
   {},
   compose(applyMiddleware(promise , reduxThunk , logger))

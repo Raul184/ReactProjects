@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
@@ -19,17 +18,15 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Nav date={this.props.fecha} />
         <Router>
           <Switch>
             <Route exact path='/'
               render={
-                () => <HomePage />
+                (routeParams) => <HomePage {...routeParams}/>
               }
             />
             <Route exact path='/details/:movieId'
-              render={
-                (routeParams) => <MovieDetails {...routeParams} />
+              render={ (routeParams) => <MovieDetails {...routeParams} />
               }
             />
           </Switch>
@@ -47,4 +44,4 @@ function mapStateToProps({ fecha }){
 
 export default connect(mapStateToProps, {
   getFecha
-}) (App);
+})(App);

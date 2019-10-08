@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 //comps.
 import Search from './Search';
+//hook
+import { useState } from 'react';
 
 const Wrap = styled.div`
   position: fixed;
@@ -21,11 +23,19 @@ const Wrap = styled.div`
 const DateWrap = styled.div`
   
 `;
-export default function Nav({date}) {
+export default function Nav({ path, date }) {
+  const [ search, setSearch ] = useState('');
+  
+  //onChange
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  }
   return (
     <Wrap>
       <h3>Movie G'o!</h3>
-      <Search />
+      {
+        path === '/' && <Search handleChange={handleChange}/>
+      }
       <DateWrap>{date.fecha.toLocaleString()}</DateWrap>
     </Wrap>
   )

@@ -19,11 +19,11 @@ const Input = styled.input`
   }
 `;
 
-export default function Search() {
+export default function Search({handleChange}) {
   return (
     <Wrap>
       <FaSearch color="#FFCA28"/>
-      <Input placeholder="Search"/>
+      <Input placeholder="Search" onChange={handleChange} />
     </Wrap>
   )
 }

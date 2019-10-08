@@ -9,7 +9,6 @@ import reduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
 import promise from 'redux-promise-middleware';
 import { Provider } from 'react-redux';
-//Index for all reducers
 //Reducers
 import fecha  from './redux/reducers/fecha';
 import estrenos from './redux/reducers/estrenos';
@@ -17,6 +16,8 @@ import popular from './redux/reducers/popular';
 import creditos from './redux/reducers/creditos';
 import detalles from './redux/reducers/detalles';
 import search from './redux/reducers/search'; 
+// Router
+import { withRouter } from 'react-router-dom';
 
 //Redux Store
 const store = createStore(
@@ -31,10 +32,13 @@ const store = createStore(
   {},
   compose(applyMiddleware(promise , reduxThunk , logger))
 )
+
 ReactDOM.render(
-    <Provider store={store}>
+  <Provider store={store}>
+    <withRouter>
       <App />
-    </Provider>  
+    </withRouter>  
+  </Provider>  
   ,
   document.getElementById('root')
 );

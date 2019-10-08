@@ -15,7 +15,7 @@ export default function Cast({ cast }) {
       <Wrap>
         {
           cast.map(people => {
-            return <Actor actor={people} />
+            return <Actor key={people.cast_id} actor={people} />
           })
         }
       </Wrap>

@@ -20,7 +20,7 @@ const Name = styled.span`
 export default function Actor({ actor }) {
   let urlImage = "https://image.tmdb.org/t/p/w185";
   return (
-    <Wrap>
+    <Wrap key={actor.cast_id}>
       <Pic
         src={`${urlImage}${actor.profile_path}`}
       ></Pic>

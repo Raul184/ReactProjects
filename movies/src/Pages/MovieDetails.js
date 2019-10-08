@@ -20,7 +20,6 @@ function MovieDetails(props) {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-  
   return (
     <>
       <Nav date={props.fecha} path={props.match.path}/>

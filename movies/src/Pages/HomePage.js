@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { getEstrenos} from '../redux/actions/estrenos';
 import { getPopular } from '../redux/actions/popular';
 
-
 class HomePage extends Component {
   async componentDidMount() {
     try {
@@ -25,7 +24,7 @@ class HomePage extends Component {
   render() {
     return (
       <>
-        <Nav date={this.props.fecha} path={this.props.match.path}/>
+        <Nav path={this.props.match.path}/>
         <Destacados pelicula={this.props.estrenos.random} />
         <Titulo>Lo mas visto:</Titulo>
         <Estrenos pelis={this.props.estrenos.data} />
@@ -37,9 +36,8 @@ class HomePage extends Component {
 }
 
 //Convertir props de la Store centralizada en propiedades.
-const mapStateToProps = ({estrenos , popular , fecha}) => {
+const mapStateToProps = ({estrenos , popular}) => {
   return {
-    fecha,
     popular,
     estrenos
   }  

@@ -17,8 +17,7 @@ import creditos from './redux/reducers/creditos';
 import detalles from './redux/reducers/detalles';
 import search from './redux/reducers/search'; 
 // Router
-import { withRouter } from 'react-router-dom';
-
+import { BrowserRouter as Router  ,withRouter} from 'react-router-dom';
 //Redux Store
 const store = createStore(
   combineReducers({
@@ -33,11 +32,19 @@ const store = createStore(
   compose(applyMiddleware(promise , reduxThunk , logger))
 )
 
+//High Order Comp.  ++ Routing props enhancement
+const Main = withRouter(
+  props =>
+    <App
+      {...props}
+    />
+);  
+
 ReactDOM.render(
   <Provider store={store}>
-    <withRouter>
-      <App />
-    </withRouter>  
+    <Router>
+      <Main />
+    </Router>
   </Provider>  
   ,
   document.getElementById('root')

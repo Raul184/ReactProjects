@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Search from './Search';
 //hook
 import { useState } from 'react';
+//redux
+import { connect } from 'react-redux';
+
 
 const Wrap = styled.div`
   position: fixed;
@@ -23,9 +26,8 @@ const Wrap = styled.div`
 const DateWrap = styled.div`
   
 `;
-export default function Nav({ path, date }) {
+function Nav(props) {
   const [ search, setSearch ] = useState('');
-  
   //onChange
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -34,9 +36,15 @@ export default function Nav({ path, date }) {
     <Wrap>
       <h3>Movie G'o!</h3>
       {
-        path === '/' && <Search handleChange={handleChange}/>
+        props.path === '/' && <Search handleChange={handleChange}/>
       }
-      <DateWrap>{date.fecha.toLocaleString()}</DateWrap>
+      <DateWrap>{props.fecha.dataFecha.toLocaleString()}</DateWrap>
     </Wrap>
   )
 }
+
+//Pass in reducers
+const mapStateToProps = (fecha) => {
+  return fecha
+}
+export default connect(mapStateToProps)(Nav);

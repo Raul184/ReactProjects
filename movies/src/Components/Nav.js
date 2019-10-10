@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 //comps.
 import Search from './Search';
-//hook
-import { useState } from 'react';
 //redux
 import { connect } from 'react-redux';
 //actions

@@ -24,17 +24,22 @@ class HomePage extends Component {
   }
   render() {
     const { search, estrenos, popular } = this.props
-    return (
-      <>
-        <SearchResults data={search.searchInput}/>
-        <Nav path={this.props.match.path}/>
-        <Destacados pelicula={estrenos.random} />
-        <Titulo>Lo mas visto:</Titulo>
-        <Estrenos pelis={estrenos.data} />
-        <Titulo>Proximamente:</Titulo>
-        <Estrenos pelis={popular.dataII} />
-      </>
-    )
+    if (search.searchInput.length === 0) {
+      return (
+        <>
+          <SearchResults data={search.searchInput}/> 
+          <Nav path={this.props.match.path}/>
+          <Destacados pelicula={estrenos.random} />
+          <Titulo>Lo mas visto:</Titulo>
+          <Estrenos pelis={estrenos.data} />
+          <Titulo>Proximamente:</Titulo>
+          <Estrenos pelis={popular.dataII} />
+        </>
+      )  
+    }
+    else {
+      return <SearchResults data={search.searchInput}/>  
+    }
   }
 }
 

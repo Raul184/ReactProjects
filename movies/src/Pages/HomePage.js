@@ -4,6 +4,7 @@ import Destacados from '../Components/Destacados';
 import Estrenos from '../Components/Estrenos';
 import Titulo from '../Components/Titulo';
 import Nav from '../Components/Nav';
+import SearchResults from '../Components/SearchResults';
 import { connect } from 'react-redux';
 //Redux actions
 import { getEstrenos} from '../redux/actions/estrenos';
@@ -22,24 +23,27 @@ class HomePage extends Component {
     }
   }
   render() {
+    const { search, estrenos, popular } = this.props
     return (
       <>
+        <SearchResults data={search.searchInput}/>
         <Nav path={this.props.match.path}/>
-        <Destacados pelicula={this.props.estrenos.random} />
+        <Destacados pelicula={estrenos.random} />
         <Titulo>Lo mas visto:</Titulo>
-        <Estrenos pelis={this.props.estrenos.data} />
+        <Estrenos pelis={estrenos.data} />
         <Titulo>Proximamente:</Titulo>
-        <Estrenos pelis={this.props.popular.dataII} />
+        <Estrenos pelis={popular.dataII} />
       </>
     )
   }
 }
 
 //Convertir props de la Store centralizada en propiedades.
-const mapStateToProps = ({estrenos , popular}) => {
+const mapStateToProps = ({estrenos , popular , search}) => {
   return {
     popular,
-    estrenos
+    estrenos,
+    search
   }  
 }
 

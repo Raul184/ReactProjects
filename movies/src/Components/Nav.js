@@ -6,6 +6,8 @@ import Search from './Search';
 import { useState } from 'react';
 //redux
 import { connect } from 'react-redux';
+//actions
+import { getBusqueda } from '../redux/actions/search';
 
 
 const Wrap = styled.div`
@@ -27,10 +29,9 @@ const DateWrap = styled.div`
   
 `;
 function Nav(props) {
-  const [ search, setSearch ] = useState('');
   //onChange
   const handleChange = (e) => {
-    console.log(e.target.value);
+    props.getBusqueda(e.target.value);
   }
   return (
     <Wrap>
@@ -47,4 +48,7 @@ function Nav(props) {
 const mapStateToProps = (fecha) => {
   return fecha
 }
-export default connect(mapStateToProps)(Nav);
+//Connect to Redux Store
+export default connect(mapStateToProps, {
+  getBusqueda
+})(Nav);

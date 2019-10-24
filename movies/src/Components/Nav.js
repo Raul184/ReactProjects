@@ -6,7 +6,7 @@ import Search from './Search';
 import { connect } from 'react-redux';
 //actions
 import { getBusqueda } from '../redux/actions/search';
-
+import {clearSearch} from '../redux/actions/search';
 
 const Wrap = styled.div`
   position: fixed;
@@ -29,13 +29,23 @@ const DateWrap = styled.div`
 function Nav(props) {
   //onChange
   const handleChange = (e) => {
-    props.getBusqueda(e.target.value);
+    if(e.key === 'Enter'){
+      props.getBusqueda(e.target.value);
+    }
+    else
+    { 
+      return null
+    }
   }
   return (
     <Wrap>
       <h3>Movie G'o!</h3>
       {
-        props.path === '/' && <Search handleChange={handleChange}/>
+        props.path === '/' &&
+        <Search
+          handleChange={handleChange}
+          clear={props.clearSearch}
+        />
       }
       <DateWrap>{props.fecha.dataFecha.toLocaleString()}</DateWrap>
     </Wrap>
@@ -48,5 +58,6 @@ const mapStateToProps = (fecha) => {
 }
 //Connect to Redux Store
 export default connect(mapStateToProps, {
-  getBusqueda
+  getBusqueda,
+  clearSearch
 })(Nav);

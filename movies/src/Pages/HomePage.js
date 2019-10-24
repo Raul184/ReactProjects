@@ -38,7 +38,12 @@ class HomePage extends Component {
       )  
     }
     else {
-      return <SearchResults data={search.searchInput}/>  
+      return (
+        <>
+          <Nav path={this.props.match.path}/>
+          <SearchResults data={search.searchInput} />
+        </>
+      )
     }
   }
 }

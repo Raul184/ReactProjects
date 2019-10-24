@@ -11,3 +11,9 @@ export const getBusqueda = (str) => dispatch => {
     payload: axios.get(`${ url }search/movie?query=${ str }&api_key=${ key }&language=es`)
   }); 
 } 
+export const clearSearch = () => {
+  return {
+    type: Types.CLEAR_SEARCH,
+    payload: ''
+  }
+}
